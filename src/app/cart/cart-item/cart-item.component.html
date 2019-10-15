@@ -1,0 +1,8 @@
+<div *ngIf="cart">
+    <h2>{{cart.item.name | uppercase}}</h2>
+    <p>{{cart.item.description}}</p>
+    <p>Price {{cart.item.price}}$</p>
+    <p>Count: {{cart.count}}</p>
+    <button (click)="onAddCart(cart)">Add one more {{cart.item.name}}</button><br>
+    <button (click)="onRemoveCart(cart)">Remove {{cart.item.name}} from cart</button>
+</div>

@@ -9,7 +9,7 @@ import { ProductsModule } from './products/products.module';
 @NgModule({
   declarations: [
     AppComponent,
-    FirstComponent,
+    FirstComponent
   ],
   imports: [
     BrowserModule,

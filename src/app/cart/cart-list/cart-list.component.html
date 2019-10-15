@@ -1,0 +1,16 @@
+<h1>{{componentName}}</h1>
+<div *ngIf="carts.length; else messageBlock" class="carts">
+    <app-cart-item *ngFor = "let cart of carts" 
+        class="cart" 
+        [cart] = "cart" 
+        (removeCart)="onRemoveCart($event)"
+        (addCart)="onAddCart($event)">
+    </app-cart-item>
+    <div>
+        <p>Products count: {{cartService.getTotalCountItems()}}</p>
+        <p>Total price: {{cartService.getTotalSum()}}$</p>
+    </div>
+</div>
+<ng-template #messageBlock>
+    <p>No items in the shopping cart</p>
+</ng-template>

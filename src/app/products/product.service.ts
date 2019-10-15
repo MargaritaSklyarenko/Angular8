@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ProductModel, Category } from '../../shared/product';
+import { ProductModel, Category } from '../shared/product';
 
 @Injectable({
   providedIn: 'root'
@@ -18,7 +18,7 @@ export class ProductService {
     description: 'Blue skirt',
     price: 300,
     category: Category.Skirt,
-    isAvailable: true
+    isAvailable: false
   },
   {
     name: 'SkyBlue',
@@ -29,7 +29,7 @@ export class ProductService {
   },
   {
     name: 'Forehead',
-    description: 'Winter colllection',
+    description: 'Winter collection',
     price: 1000,
     category: Category.Shoes,
     isAvailable: true

@@ -1,6 +1,5 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { ProductModel } from '../../shared/product';
-import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -10,15 +9,11 @@ import { CartService } from '../../cart/cart.service';
 export class ProductComponent {
 
   @Input () product: ProductModel;
+  @Output() buyProduct: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
 
-  constructor(public cartService: CartService) { }
+  constructor() { }
 
-  onBuy(): void {
-    if (this.product.isAvailable) {
-      console.log(`Thanks for ordering ${this.product.name}`);
-      this.cartService.addCart(this.product);
-    } else {
-      console.log(`Sorry. ${this.product.name} is not currently available`);
-    }
+  onBuyProduct(): void {
+    this.buyProduct.emit(this.product);
   }
 }
