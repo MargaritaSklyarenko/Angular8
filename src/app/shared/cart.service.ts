@@ -12,16 +12,19 @@ export class CartService {
   constructor() { }
 
   addCart(cart: CartModel): void {
-    let isNewItem: boolean = true;
+    let isNewItem = true;
 
     this.carts.forEach(element => {
-      if(element.item.name === cart.item.name) {
+      if (element.item.name === cart.item.name) {
         element.count++;
+        element.itemsPrice += cart.item.price;
         isNewItem = false;
       }
     });
 
-    isNewItem && this.carts.push(cart);
+    if (isNewItem) {
+      this.carts.push(cart);
+    }
   }
 
   getCarts(): Array<CartModel> {
@@ -29,22 +32,25 @@ export class CartService {
   }
 
   deleteCart(cart: CartModel): void {
-    let shouldBeRemoved: boolean = false;
+    let shouldBeRemoved = false;
 
     this.carts.forEach(element => {
-      if(element.item.name === cart.item.name) {
+      if (element.item.name === cart.item.name) {
         element.count--;
-        if (!element.count) { 
+        element.itemsPrice -= cart.item.price;
+        if (!element.count) {
           shouldBeRemoved = true;
         }
       }
     });
 
-    shouldBeRemoved && this.carts.splice(this.carts.indexOf(cart), 1);
+    if (shouldBeRemoved) {
+      this.carts.splice(this.carts.indexOf(cart), 1);
+    }
   }
 
   getTotalSum(): number {
-    return this.carts.reduce((accumulator, currentValue) => accumulator + currentValue.count*currentValue.item.price, 0);
+    return this.carts.reduce((accumulator, currentValue) => accumulator + currentValue.count * currentValue.item.price, 0);
   }
 
   getTotalCountItems(): number {
