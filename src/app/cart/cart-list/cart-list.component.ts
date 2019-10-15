@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../shared/cart.service';
 import { CartModel } from '../cart';
 
@@ -7,7 +7,7 @@ import { CartModel } from '../cart';
   templateUrl: './cart-list.component.html',
   styleUrls: ['./cart-list.component.css']
 })
-export class CartListComponent implements OnInit {
+export class CartListComponent implements OnInit, OnDestroy {
   componentName = 'Shopping cart';
   carts: Array<CartModel> = [];
 
@@ -15,6 +15,10 @@ export class CartListComponent implements OnInit {
 
   ngOnInit() {
     this.carts = this.cartService.getCarts();
+  }
+
+  ngOnDestroy() {
+    console.log('Destroying cart list component');
   }
 
   onRemoveCart(cart: CartModel) {

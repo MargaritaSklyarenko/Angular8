@@ -1,10 +1,14 @@
 <h1>{{componentName}}</h1>
-<div *ngIf="carts.length; else messageBlock" class="carts">
+<div *ngIf="carts.length; else messageBlock"
+    class="carts"
+    [ngClass]="'border'">
     <app-cart-item *ngFor = "let cart of carts" 
         class="cart" 
         [cart] = "cart" 
         (removeCart)="onRemoveCart($event)"
-        (addCart)="onAddCart($event)">
+        (addCart)="onAddCart($event)"
+        [ngClass]="'border'"
+        appHighlight>
     </app-cart-item>
     <div>
         <p>Products count: {{cartService.getTotalCountItems()}}</p>
