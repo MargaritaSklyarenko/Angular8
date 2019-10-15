@@ -1,0 +1,13 @@
+<h1>{{componentName}}</h1>
+<div *ngIf="carts.length; else messageBlock" class="carts">
+    <div *ngFor = "let cart of carts" class="cart">
+        <h2>{{cart.name | uppercase}}</h2>
+        <p>{{cart.description}}</p>
+        <p>Price {{cart.price}}$</p>
+        <button (click)="onRemove(cart)">Remove {{cart.name}} from cart</button>
+    </div>
+    <p>Total price: {{ carts | sum:"price"}}</p>
+</div>
+<ng-template #messageBlock>
+    <p>No items in the shopping cart</p>
+</ng-template>

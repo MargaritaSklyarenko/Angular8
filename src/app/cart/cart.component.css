@@ -1,16 +1,16 @@
-.cards {
+.carts {
     display: flex;
     justify-content: space-around;
     flex-flow: row wrap;
 }
 
-.card {   
+.cart {   
     border: 1px solid gray;
     border-radius: 4px;
     padding: 10px;
     margin: 20px;
 }
 
-.card:hover {
+.cart:hover {
     background-color: aliceblue;
 }

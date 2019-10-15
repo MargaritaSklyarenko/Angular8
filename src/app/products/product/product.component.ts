@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductModel } from '../product/product';
-import { CartService } from '../card/cart.service';
+import { ProductModel } from '../../shared/product';
+import { CartService } from '../../cart/cart.service';
 
 @Component({
   selector: 'app-product',
@@ -16,7 +16,7 @@ export class ProductComponent {
   onBuy(): void {
     if (this.product.isAvailable) {
       console.log(`Thanks for ordering ${this.product.name}`);
-      this.cartService.addCard(this.product);
+      this.cartService.addCart(this.product);
     } else {
       console.log(`Sorry. ${this.product.name} is not currently available`);
     }
