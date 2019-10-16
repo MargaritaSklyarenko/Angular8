@@ -3,17 +3,10 @@ import { CommonModule } from '@angular/common';
 import { SumPipe } from '../shared/sum.pipe';
 import { HighlightDirective } from './highlight.directive';
 
+const items = [SumPipe, HighlightDirective];
 @NgModule({
-  declarations: [
-    SumPipe,
-    HighlightDirective
-  ],
-  imports: [
-    CommonModule,
-  ],
-  exports: [
-    SumPipe,
-    HighlightDirective
-  ]
+  declarations: [...items],
+  imports: [CommonModule],
+  exports: [...items]
 })
-export class SharedModule { }
+export class SharedModule {}
