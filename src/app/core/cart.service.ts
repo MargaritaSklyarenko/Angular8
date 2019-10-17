@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { CartModel } from '../cart/cart';
-import { ProductModel } from './product';
+import { CartModel } from '../cart/cart.model';
+import { ProductModel } from '../shared/product.model';
 
 @Injectable({
   providedIn: 'root'
@@ -46,15 +46,6 @@ export class CartService {
     if (shouldBeRemoved) {
       this.carts.splice(this.carts.indexOf(cart), 1);
     }
-  }
-
-  // у вас уже есть sum pipe, который делает эту работу
-  getTotalSum(): number {
-    return this.carts.reduce(
-      (accumulator, currentValue) =>
-        accumulator + currentValue.count * currentValue.item.price,
-      0
-    );
   }
 
   getTotalCountItems(): number {
