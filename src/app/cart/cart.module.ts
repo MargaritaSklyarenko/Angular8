@@ -14,7 +14,6 @@ import { CartListComponent } from './cart-list/cart-list.component';
     SharedModule,
   ],
   exports: [
-    // CartItemComponent, // приватный
     CartListComponent
   ]
 })
