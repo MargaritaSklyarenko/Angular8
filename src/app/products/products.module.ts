@@ -15,7 +15,7 @@ import { SharedModule } from '../shared/shared.module';
   ],
   exports: [
     ProductListComponent,
-    ProductComponent
+    // ProductComponent // этот компонент приватный
   ]
 })
 export class ProductsModule { }

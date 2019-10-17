@@ -7,9 +7,11 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('appTitle', {static: false})
-  appTitle: ElementRef;
+  appTitle: ElementRef<HTMLElement>;
 
   ngAfterViewInit() {
+    // зачем setTimeout?
+    // желательно задействовать Renderer2, а не изменять свойства напрямую
     setTimeout(() => {
       this.appTitle.nativeElement.textContent = 'Shop';
     }, 0);

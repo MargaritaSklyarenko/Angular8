@@ -5,11 +5,10 @@ import { ProductModel } from './product';
 @Injectable({
   providedIn: 'root'
 })
-
 export class CartService {
   carts: Array<CartModel> = [];
 
-  constructor() { }
+  constructor() {}
 
   addCart(cart: CartModel): void {
     let isNewItem = true;
@@ -49,11 +48,19 @@ export class CartService {
     }
   }
 
+  // у вас уже есть sum pipe, который делает эту работу
   getTotalSum(): number {
-    return this.carts.reduce((accumulator, currentValue) => accumulator + currentValue.count * currentValue.item.price, 0);
+    return this.carts.reduce(
+      (accumulator, currentValue) =>
+        accumulator + currentValue.count * currentValue.item.price,
+      0
+    );
   }
 
   getTotalCountItems(): number {
-    return this.carts.reduce((accumulator, currentValue) => accumulator + currentValue.count, 0);
+    return this.carts.reduce(
+      (accumulator, currentValue) => accumulator + currentValue.count,
+      0
+    );
   }
 }
