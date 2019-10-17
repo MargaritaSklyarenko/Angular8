@@ -12,7 +12,7 @@
     </app-cart-item>
     <div>
         <p>Products count: {{cartService.getTotalCountItems()}}</p>
-        <p>Total price: {{cartService.getTotalSum()}}$</p>
+        <p>Total price: {{carts | sum:"itemsPrice"}}$</p>
     </div>
 </div>
 <ng-template #messageBlock>

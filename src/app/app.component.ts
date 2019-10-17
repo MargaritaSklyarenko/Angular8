@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,14 +6,9 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements AfterViewInit {
-  @ViewChild('appTitle', {static: false})
-  appTitle: ElementRef<HTMLElement>;
+  @ViewChild('appTitle', {static: false}) title: ElementRef<HTMLElement>;
 
   ngAfterViewInit() {
-    // зачем setTimeout?
-    // желательно задействовать Renderer2, а не изменять свойства напрямую
-    setTimeout(() => {
-      this.appTitle.nativeElement.textContent = 'Shop';
-    }, 0);
+      this.title.nativeElement.innerHTML = 'Shop';
   }
 }

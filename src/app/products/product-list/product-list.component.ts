@@ -1,7 +1,7 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductService } from '../product.service';
-import { ProductModel } from '../../shared/product';
-import { CartService } from '../../shared/cart.service';
+import { ProductService } from '../../core/product.service';
+import { ProductModel } from '../../shared/product.model';
+import { CartService } from '../../core/cart.service';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
