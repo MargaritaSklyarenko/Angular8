@@ -1,4 +1,5 @@
-import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { Component, ViewChild, ElementRef, AfterViewInit, OnInit } from '@angula
 })
 export class AppComponent implements AfterViewInit {
   @ViewChild('appTitle', {static: false}) title: ElementRef<HTMLElement>;
+
+  constructor() {}
 
   ngAfterViewInit() {
       this.title.nativeElement.innerHTML = 'Shop';

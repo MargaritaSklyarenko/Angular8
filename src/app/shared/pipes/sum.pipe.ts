@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class SumPipe implements PipeTransform {
   transform(items: any[], attr: string): any {
-    return items.reduce((accumulator, currentValue) => 
+    return items.reduce((accumulator, currentValue) =>
       accumulator + currentValue[attr], 0
     );
   }

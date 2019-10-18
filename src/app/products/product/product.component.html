@@ -4,7 +4,8 @@
     <p>Price {{product.price}}$</p>
     <button 
         (click)="onBuyProduct($event)"
-        [disabled]="!product.isAvailable">
+        [disabled]="!product.isAvailable"
+        appBoldBorder='2px'>
         Buy {{product.name}}
     </button>
 </div>

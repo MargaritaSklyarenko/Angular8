@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductModel, Category } from '../shared/product.model';
+import { ProductModel, Category } from '../../../shared/models/product.model';
 
 @Component({
   selector: 'app-first',

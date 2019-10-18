@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CartService } from '../../core/cart.service';
+import { CartService } from '../../core/services/cart.service';
 import { CartModel } from '../cart.model';
 
 @Component({
@@ -22,10 +22,10 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   onRemoveCart(cart: CartModel) {
-    this.cartService.deleteCart(cart);
+    this.cartService.removeProduct(cart);
   }
 
   onAddCart(cart: CartModel) {
-    this.cartService.addCart(cart);
+    this.cartService.addProduct(cart);
   }
 }

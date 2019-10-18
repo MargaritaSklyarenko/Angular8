@@ -6,6 +6,6 @@
         <p>Count {{cart.item.name}}: {{cart.count}}</p>
         <p>Total price {{cart.item.name}}: {{cart.itemsPrice}}$</p>
     </div>
-    <button (click)="onAddCart(cart)">Add one more {{cart.item.name}}</button><br>
-    <button (click)="onRemoveCart(cart)">Remove {{cart.item.name}} from cart</button>
+    <button (click)="onAddCart(cart)" appBoldBorder='5px'>Add one more {{cart.item.name}}</button><br>
+    <button (click)="onRemoveCart(cart)" appBoldBorder='10px'>Remove {{cart.item.name}} from cart</button>
 </div>
