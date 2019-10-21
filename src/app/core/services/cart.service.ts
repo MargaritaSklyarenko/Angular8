@@ -19,7 +19,7 @@ export class CartService {
     let isNewItem = true;
 
     this.cartProducts.forEach(element => {
-      if (element.item.name === cart.item.name) {
+      if (element.item.productName === cart.item.productName) {
         isNewItem = false;
         this.increaseQuantity(element, cart.item.price);
       }
@@ -36,7 +36,7 @@ export class CartService {
     let shouldBeRemoved = false;
 
     this.cartProducts.forEach(element => {
-      if (element.item.name === cart.item.name) {
+      if (element.item.productName === cart.item.productName) {
         this.decreaseQuantity(element, cart.item.price);
         shouldBeRemoved = !element.count;
       }

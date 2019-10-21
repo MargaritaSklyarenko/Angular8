@@ -1,43 +1,39 @@
 import { Injectable } from '@angular/core';
-import { ProductModel, Category } from '../../shared/models/product.model';
+import { ProductModel } from '../../shared/models/product.model';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+
+import { Observable, throwError } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
+  private productUrl = 'assets/products/products.json';
 
-  private products: Array<ProductModel> = [{
-    name: 'Amana',
-    description: 'Perfect crocodile leather',
-    price: 1300,
-    category: Category.Dress,
-    isAvailable: true
-  },
-  {
-    name: 'JeakSky',
-    description: 'Blue skirt',
-    price: 300,
-    category: Category.Skirt,
-    isAvailable: false
-  },
-  {
-    name: 'SkyBlue',
-    description: 'Blue dress with purple flashes',
-    price: 800,
-    category: Category.Dress,
-    isAvailable: true
-  },
-  {
-    name: 'Forehead',
-    description: 'Winter collection',
-    price: 1000,
-    category: Category.Shoes,
-    isAvailable: true
-  }];
+  constructor(private http: HttpClient) {}
 
-  constructor() { }
+  getProducts(): Observable<ProductModel[]> {
+    return this.http.get<ProductModel[]>(this.productUrl).pipe(
+      tap(data => console.log('All: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
 
-  getProducts(): Array<ProductModel> {
-    return this.products;
+  getProduct(id: number): Observable<ProductModel | undefined> {
+    return this.getProducts().pipe(
+      map((products: ProductModel[]) => products.find(p => p.productId === id))
+    );
+  }
+
+  private handleError(err: HttpErrorResponse) {
+    let errorMessage = '';
+    if (err.error instanceof ErrorEvent) {
+      errorMessage = `An error occurred: ${err.error.message}`;
+    } else {
+      errorMessage = `Server returned code: ${err.status}, error message is: ${err.message}`;
+    }
+    console.error(errorMessage);
+    return throwError(errorMessage);
   }
 }

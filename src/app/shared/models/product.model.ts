@@ -1,13 +1,14 @@
 export class ProductModel {
-    name: string;
+    productId: number;
+    productName: string;
+    productCategory: Category;
     description: string;
     price: number;
-    category: Category;
     isAvailable: boolean;
+    imageUrl: string
 }
 
 export enum Category {
-    Shoes = 'Shoes',
-    Dress = 'Dress',
-    Skirt = 'Skirt'
+    Computer = 'Computer',
+    Garden = 'Garden'
 }
