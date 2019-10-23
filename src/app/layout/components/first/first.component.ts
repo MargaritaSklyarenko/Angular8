@@ -10,18 +10,22 @@ export class FirstComponent {
 
   readonly componentName: string = 'First';
   products: Array<ProductModel> = [{
-    name: 'Amana',
-    description: 'Perfect crocodile leather',
-    price: 1300,
-    category: Category.Dress,
-    isAvailable: true
+    productId: 1,
+    productName: 'Leaf Rake',
+    productCategory: Category.Garden,
+    description: 'Leaf rake with 48-inch wooden handle.',
+    isAvailable: true,
+    price: 19.95,
+    imageUrl: 'https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png'
   },
   {
-    name: 'JeakSky',
-    description: 'Blue skirt',
-    price: 300,
-    category: Category.Skirt,
-    isAvailable: true
+    productId: 2,
+    productName: 'Garden Cart',
+    productCategory: Category.Garden,
+    description: '15 gallon capacity rolling garden cart',
+    isAvailable: true,
+    price: 32.99,
+    imageUrl: 'https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png'
   }];
 
   constructor() { }

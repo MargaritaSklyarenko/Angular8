@@ -5,6 +5,7 @@ import { AppComponent } from './app.component';
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
 import { LayoutModule } from './layout/layout.module';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { LayoutModule } from './layout/layout.module';
     BrowserModule,
     CartModule,
     ProductsModule,
-    LayoutModule
+    LayoutModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,11 +1,11 @@
 <div *ngIf="cart">  
-    <h2>{{cart.item.name | uppercase}}</h2>
+    <h2>{{cart.item.productName | uppercase}}</h2>
     <p>{{cart.item.description}}</p>
-    <p>Price {{cart.item.price}}$</p>
+    <p>Price {{cart.item.price | currency}}</p>
     <div *ngIf="cart.count > 1" [ngClass]="'border'">
-        <p>Count {{cart.item.name}}: {{cart.count}}</p>
-        <p>Total price {{cart.item.name}}: {{cart.itemsPrice}}$</p>
+        <p>Count {{cart.item.productName}}: {{cart.count}}</p>
+        <p>Total price {{cart.item.productName}}: {{cart.price | currency}}</p>
     </div>
-    <button (click)="onAddCart(cart)" appBoldBorder='5px'>Add one more {{cart.item.name}}</button><br>
-    <button (click)="onRemoveCart(cart)" appBoldBorder='10px'>Remove {{cart.item.name}} from cart</button>
+    <button (click)="onAddCart(cart)" appBoldBorder='5px'>Add one more {{cart.item.productName}}</button><br>
+    <button (click)="onRemoveCart(cart)" appBoldBorder='10px'>Remove {{cart.item.productName}} from cart</button>
 </div>

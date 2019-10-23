@@ -1,18 +1,22 @@
 <h1>{{componentName}}</h1>
 <div *ngIf="carts.length; else messageBlock"
-    class="carts"
-    [ngClass]="'border'">
-    <app-cart-item *ngFor = "let cart of carts" 
-        class="cart" 
-        [cart] = "cart" 
-        (removeCart)="onRemoveCart($event)"
-        (addCart)="onAddCart($event)"
-        [ngClass]="'border'"
-        appHighlight>
-    </app-cart-item>
+    ngClass=border>
+    <select #orderByField>
+        <option *ngFor = "let field of fields" [value]="field">{{field}}</option>
+    </select>
+    <div class="carts">
+        <app-cart-item *ngFor = "let cart of (carts | orderBy: orderByField.value : true)"
+            class="cart" 
+            [cart] = "cart" 
+            (removeCart)="onRemoveCart($event)"
+            (addCart)="onAddCart($event)"
+            [ngClass]="'border'"
+            appHighlight>
+        </app-cart-item>
+    </div>
     <div>
         <p>Products count: {{cartService.totalQuantity}}</p>
-        <p>Total price: {{carts | sum:"itemsPrice"}}$</p>
+        <p>Total price: {{carts | sum:"price" | currency}}</p>
     </div>
 </div>
 <ng-template #messageBlock>

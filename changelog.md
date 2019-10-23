@@ -1,8 +1,3 @@
-1) Modified CartServise to match all the requirements in point 1
-2) Created LocalStorageService
-3) Created ConfigOptionsService
-4) Created ConstantsService
-5) Created GeneratorService
-6) Created AboutComponent and LayoutModule
-7) Created directive BoldBorderDirective
-8) Moved FirstComponent to LayoutModule and reimported components
+1) Output category in uppercase for products and added currency pipe for price formating
+2) Asynk pipe using in product-list.component.html.
+3) OrderBy pipe used in app-cart-item

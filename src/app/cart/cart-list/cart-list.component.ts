@@ -10,6 +10,7 @@ import { CartModel } from '../cart.model';
 export class CartListComponent implements OnInit, OnDestroy {
   componentName = 'Shopping cart';
   carts: Array<CartModel> = [];
+  fields = ['name', 'count', 'price'];
 
   constructor(public cartService: CartService) { }
 
