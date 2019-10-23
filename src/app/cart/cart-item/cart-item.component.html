@@ -4,7 +4,7 @@
     <p>Price {{cart.item.price | currency}}</p>
     <div *ngIf="cart.count > 1" [ngClass]="'border'">
         <p>Count {{cart.item.productName}}: {{cart.count}}</p>
-        <p>Total price {{cart.item.productName}}: {{cart.itemsPrice | currency}}</p>
+        <p>Total price {{cart.item.productName}}: {{cart.price | currency}}</p>
     </div>
     <button (click)="onAddCart(cart)" appBoldBorder='5px'>Add one more {{cart.item.productName}}</button><br>
     <button (click)="onRemoveCart(cart)" appBoldBorder='10px'>Remove {{cart.item.productName}} from cart</button>

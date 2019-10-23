@@ -56,12 +56,12 @@ export class CartService {
 
   increaseQuantity(element, price): void {
     element.count++;
-    element.itemsPrice += price;
+    element.price += price;
   }
 
   decreaseQuantity(element, price): void {
     element.count--;
-    element.itemsPrice -= price;
+    element.price -= price;
   }
 
   updateCartData(): void {

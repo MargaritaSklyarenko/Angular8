@@ -1,21 +1,23 @@
-import { Injectable } from '@angular/core';
+import { Injectable, InjectionToken } from '@angular/core';
+
+export const Generator = new InjectionToken<any[]>('DataTop3');
 
 export function GeneratorFactory(n: number) {
-  return (): string => {
-    const data = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
-    let randomString = '';
-    for (let i = 0; i < n; i++) {
-        const randomPoz = Math.floor(Math.random() * data.length);
-        randomString += data.substring(randomPoz, randomPoz + 1);
-    }
-    return randomString;
-  };
+  return (generatorService: GeneratorService): string =>  generatorService.generate(n);
 }
 
-@Injectable({
-  providedIn: 'root',
-  useFactory: GeneratorFactory(8)
-})
 export class GeneratorService {
+  
+  data = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ012345678';
+
   constructor() { }
+
+  generate(n: number): string {
+    let randomString = '';
+    for (let i = 0; i < n; i++) {
+        const randomPoz = Math.floor(Math.random() * this.data.length);
+        randomString += this.data.substring(randomPoz, randomPoz + 1);
+    }
+    return randomString;
+  }
 }

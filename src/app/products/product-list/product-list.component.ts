@@ -31,7 +31,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   onBuyProduct(product: ProductModel): void {
     if (product.isAvailable) {
       console.log(`Thanks for ordering ${product.productName}`);
-      this.cartService.addProduct({item: product, count: 1, itemsPrice: product.price});
+      this.cartService.addProduct({item: product, count: 1, price: product.price, name: product.productName});
     } else {
       console.log(`Sorry. ${product.productName} is not currently available`);
     }
