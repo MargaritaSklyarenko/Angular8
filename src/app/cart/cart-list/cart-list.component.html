@@ -1,6 +1,6 @@
 <h1>{{componentName}}</h1>
 <div *ngIf="carts.length; else messageBlock"
-    ngClass=border> <!-- обычно значение берем в кавычки -->
+    [ngClass]="'border'">
     <select #orderByField>
         <option *ngFor = "let field of fields" [value]="field">{{field}}</option>
     </select>
