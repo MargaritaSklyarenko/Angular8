@@ -1,13 +1,13 @@
 <h1>{{componentName}}</h1>
 <div *ngIf="carts.length; else messageBlock"
-    ngClass=border>
+    ngClass=border> <!-- обычно значение берем в кавычки -->
     <select #orderByField>
         <option *ngFor = "let field of fields" [value]="field">{{field}}</option>
     </select>
     <div class="carts">
         <app-cart-item *ngFor = "let cart of (carts | orderBy: orderByField.value : true)"
-            class="cart" 
-            [cart] = "cart" 
+            class="cart"
+            [cart] = "cart"
             (removeCart)="onRemoveCart($event)"
             (addCart)="onAddCart($event)"
             [ngClass]="'border'"
