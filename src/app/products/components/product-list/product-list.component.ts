@@ -1,8 +1,9 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductService } from '../../core/services/product.service';
-import { ProductModel } from '../../shared/models/product.model';
-import { CartService } from '../../core/services/cart.service';
+import { ProductService } from '../../services/product.service';
+import { ProductModel } from '../../models/product.model';
+import { CartService } from '../../../core/services/cart.service';
 import { Observable } from 'rxjs';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-product-list',
   templateUrl: './product-list.component.html',
@@ -13,7 +14,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
   products: Observable<ProductModel[]>;
   errMessage = '';
 
-  constructor(public productService: ProductService, public cartService: CartService) { }
+  constructor(public productService: ProductService, 
+    public cartService: CartService,
+    private router: Router) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
@@ -35,5 +38,10 @@ export class ProductListComponent implements OnInit, OnDestroy {
     } else {
       console.log(`Sorry. ${product.productName} is not currently available`);
     }
+  }
+
+  onShowDetails(product: ProductModel): void {
+    const link = ['/details', product.productId];
+    this.router.navigate(link);
   }
 }

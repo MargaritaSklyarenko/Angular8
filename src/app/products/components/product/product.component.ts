@@ -1,5 +1,6 @@
 import { Component, Input, Output, EventEmitter, ChangeDetectionStrategy } from '@angular/core';
-import { ProductModel } from '../../shared/models/product.model';
+import { ProductModel } from '../../models/product.model';
+
 
 @Component({
   selector: 'app-product',
@@ -11,10 +12,15 @@ export class ProductComponent {
 
   @Input () product: ProductModel;
   @Output() buyProduct: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
+  @Output() showProductDetails = new EventEmitter<ProductModel>();
 
   constructor() { }
 
   onBuyProduct(): void {
     this.buyProduct.emit(this.product);
+  }
+
+  onShowDetails() {
+    this.showProductDetails.emit(this.product);
   }
 }

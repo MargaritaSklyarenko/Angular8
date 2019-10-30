@@ -1,5 +1,26 @@
-app-product-list {
-    display: flex;
+.container {
+	width: 90vw;
+	margin: 0 auto;
+}
+
+.main-header {
+	display: flex;
+	align-items: center;
     justify-content: space-around;
-    flex-flow: row wrap;
+    
+	flex-wrap: wrap;
+}
+
+.main-nav ul {
+	margin: 1em 0 .5em;
+	text-align: center;
+}
+
+.main-nav li {
+	display: inline;
+}
+
+.main-nav a {
+	display: inline-block;
+	padding: .5em 1.5em;
 }

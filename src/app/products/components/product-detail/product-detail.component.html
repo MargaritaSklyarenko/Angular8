@@ -1,0 +1,11 @@
+<div *ngIf="product">
+    <h2>{{product.productName | uppercase}}</h2>
+    <p>{{product.productCategory | uppercase}}</p>
+    <p>{{product.description}}</p>
+    <p>Price {{product.price | currency}}</p>
+    <p>{{product.isAvailable ? "Available" : "Not Available"}}</p>
+    <button
+        (click)="onGoBack()">
+        Back
+    </button>
+</div>
