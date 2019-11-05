@@ -11,13 +11,13 @@ import { ProductModel } from '../../models/product.model';
 export class ProductComponent {
 
   @Input () product: ProductModel;
-  @Output() buyProduct: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
+  @Output() addToCartProduct: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
   @Output() showProductDetails = new EventEmitter<ProductModel>();
 
   constructor() { }
 
-  onBuyProduct(): void {
-    this.buyProduct.emit(this.product);
+  onAddToCartProduct(): void {
+    this.addToCartProduct.emit(this.product);
   }
 
   onShowDetails() {

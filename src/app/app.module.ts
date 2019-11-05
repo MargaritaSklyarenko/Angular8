@@ -8,6 +8,7 @@ import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
 import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
+import { AdminModule } from './admin/admin.module';
 
 
 @NgModule({

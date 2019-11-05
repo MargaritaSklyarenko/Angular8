@@ -1,0 +1,6 @@
+<h2>LOGIN</h2>
+<p>
+  <button class="btn btn-primary" (click)="authorizationService.login(false)"  *ngIf="!authorizationService.isLoggedIn">User Login</button>
+  <button class="btn btn-primary" (click)="authorizationService.login()"  *ngIf="!authorizationService.isLoggedIn">Admin Login</button>
+  <button class="btn btn-primary" (click)="authorizationService.logout()" *ngIf="authorizationService.isLoggedIn">Logout</button>
+</p>
