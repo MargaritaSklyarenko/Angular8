@@ -1,0 +1,18 @@
+<h1>{{componentName}}</h1>
+<div *ngIf="orders.length; else messageBlock">
+    <div class="orders" [ngClass]="'border'">
+        <app-orders-item *ngFor = "let order of orders"
+            class="order"
+            [ngClass]="'border'"
+            [order] = "order">
+        </app-orders-item>
+    </div>
+    <div>
+        <p>Products count: {{orders | sum:"count"}}</p>
+        <p>Total price: {{orders | sum:"price" | currency}}</p>
+    </div>
+</div>
+<ng-template #messageBlock>
+    <p>No items in the orders</p>
+</ng-template>
+

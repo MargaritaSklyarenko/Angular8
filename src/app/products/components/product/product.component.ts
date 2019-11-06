@@ -9,7 +9,6 @@ import { ProductModel } from '../../models/product.model';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductComponent {
-
   @Input () product: ProductModel;
   @Output() addToCartProduct: EventEmitter<ProductModel> = new EventEmitter<ProductModel>();
   @Output() showProductDetails = new EventEmitter<ProductModel>();

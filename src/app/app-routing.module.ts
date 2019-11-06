@@ -3,8 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { CartListComponent } from './cart/components';
 import { AuthorizationGuard } from './core/guards/authorization.guard';
 import { LoginComponent } from './layout/components/login/login.component';
-
-
+import { OrdersListComponent } from './orders/components';
 
 const routes: Routes = [
   {
@@ -19,6 +18,10 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent
+  },
+  {
+    path: 'orders',
+    component: OrdersListComponent
   },
   {
     path: '',

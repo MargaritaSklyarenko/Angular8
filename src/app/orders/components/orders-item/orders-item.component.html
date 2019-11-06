@@ -1,0 +1,9 @@
+<div *ngIf="order">  
+    <h2>{{order.item.productName | uppercase}}</h2>
+    <p>{{order.item.description}}</p>
+    <p>Price {{order.item.price | currency}}</p>
+    <div *ngIf="order.count > 1">
+        <p>Count: {{order.count}}</p>
+        <p>Total price: {{order.price | currency}}</p>
+    </div>
+</div>

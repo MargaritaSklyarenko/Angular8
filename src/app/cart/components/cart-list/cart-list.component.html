@@ -17,6 +17,7 @@
     <div>
         <p>Products count: {{cartService.totalQuantity}}</p>
         <p>Total price: {{carts | sum:"price" | currency}}</p>
+        <button (click)="onBuyCartItems()" appBoldBorder='10px'>Buy everything from the cart</button>
     </div>
 </div>
 <ng-template #messageBlock>

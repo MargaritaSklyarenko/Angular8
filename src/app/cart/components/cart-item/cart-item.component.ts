@@ -10,7 +10,7 @@ export class CartItemComponent {
   @Input () cart: CartModel;
   @Output() removeCart: EventEmitter<CartModel> = new EventEmitter<CartModel>();
   @Output() addCart: EventEmitter<CartModel> = new EventEmitter<CartModel>();
-
+  
   constructor() { }
 
   onRemoveCart(): void {
