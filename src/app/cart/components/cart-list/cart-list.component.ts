@@ -14,7 +14,8 @@ export class CartListComponent implements OnInit, OnDestroy {
   carts: Array<CartModel> = [];
   fields = ['name', 'count', 'price'];
 
-  constructor(public cartService: CartService,
+  constructor(
+    public cartService: CartService,
     public localStorageService: LocalStorageService,
     private router: Router) { }
 
@@ -41,6 +42,6 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   clearCart(): void {
-    this.cartService.removeAllProducts()
+    this.cartService.removeAllProducts();
   }
 }

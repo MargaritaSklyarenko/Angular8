@@ -1,0 +1,14 @@
+<div *ngIf="product">
+    <h2>{{product.productName | uppercase}}</h2>
+    <p>{{product.productCategory | uppercase}}</p>
+    <p>{{product.description}}</p>
+    <p>Price {{product.price | currency}}</p>
+    <button 
+        (click)="onEditProduct($event)">
+        Edit
+    </button>
+    <button 
+        (click)="onDeleteProduct($event)">
+        Delete
+    </button>
+</div>

@@ -1,6 +1,12 @@
+export enum Category {
+  Computer = 'Computer',
+  Garden = 'Garden',
+  Other = 'Other'
+}
+
 export class ProductModel {
     constructor(
-      public productId: number = null,
+      public id: number = null,
       public productName: string = '',
       public productCategory: Category = Category.Other,
       public description: string = '',
@@ -11,10 +17,3 @@ export class ProductModel {
       this.isAvailable = isAvailable || false;
     }
   }
-  
-
-export enum Category {
-    Computer = 'Computer',
-    Garden = 'Garden',
-    Other = 'Other'
-}

@@ -1,4 +1,5 @@
-[
+{
+  "products": [
     {
       "id": 1,
       "productName": "Leaf Rake",
@@ -18,7 +19,7 @@
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/58471/garden_cart.png"
     },
     {
-      "id": 5,
+      "id": 3,
       "productName": "Hammer",
       "productCategory": "Garden",
       "description": "Curved claw steel hammer",
@@ -27,7 +28,7 @@
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon_Hammer.png"
     },
     {
-      "id": 8,
+      "id": 4,
       "productName": "Saw",
       "productCategory": "Garden",
       "description": "15-inch steel blade hand saw",
@@ -36,7 +37,7 @@
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/27070/egore911_saw.png"
     },
     {
-      "id": 10,
+      "id": 5,
       "productName": "Video Game Controller",
       "productCategory": "Computer",
       "description": "Standard two-button video game controller",
@@ -45,4 +46,4 @@
       "imageUrl": "https://openclipart.org/image/300px/svg_to_png/120337/xbox-controller_01.png"
     }
   ]
-  
+}

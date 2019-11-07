@@ -12,7 +12,8 @@ import { ProductService } from '../../services/product.service';
 export class ProductDetailComponent implements OnInit {
   product: ProductModel;
 
-  constructor( public productService: ProductService,
+  constructor(
+    public productService: ProductService,
     private router: Router,
     private route: ActivatedRoute) { }
 
@@ -26,7 +27,7 @@ export class ProductDetailComponent implements OnInit {
     this.route.paramMap
       .pipe(
         switchMap((params: ParamMap) =>
-        this.productService.getProduct(+params.get('productID'))
+        this.productService.getProduct(+params.get('id'))
         )
       )
       .subscribe(observer);

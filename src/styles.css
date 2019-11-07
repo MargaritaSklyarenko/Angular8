@@ -16,3 +16,21 @@ a {
     color: black;
     background-color: #e7e7e7
 }
+
+.main-nav ul {
+	margin: 1em 0 .5em;
+    text-align: center;
+}
+
+.main-nav{
+    padding-inline-start: 0;
+}
+
+.main-nav li {
+	display: inline;
+}
+
+.main-nav a {
+	display: inline-block;
+	padding: .5em 1.5em;
+}

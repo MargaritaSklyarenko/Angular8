@@ -10,7 +10,7 @@ export class FirstComponent {
 
   readonly componentName: string = 'First';
   products: Array<ProductModel> = [{
-    productId: 1,
+    id: 1,
     productName: 'Leaf Rake',
     productCategory: Category.Garden,
     description: 'Leaf rake with 48-inch wooden handle.',
@@ -19,7 +19,7 @@ export class FirstComponent {
     imageUrl: 'https://openclipart.org/image/300px/svg_to_png/26215/Anonymous_Leaf_Rake.png'
   },
   {
-    productId: 2,
+    id: 2,
     productName: 'Garden Cart',
     productCategory: Category.Garden,
     description: '15 gallon capacity rolling garden cart',

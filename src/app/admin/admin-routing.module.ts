@@ -5,8 +5,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { AdminComponent } from './admin.component';
 
 import {
-  ManageOrdersComponent,
-  ManageProductsComponent
+  ManageOrdersComponent
 } from './components';
 
 import { AuthorizationGuard } from '../core/guards/authorization.guard';
@@ -19,10 +18,12 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        canActivateChild: [AuthorizationGuard],
         children: [
           { path: 'orders', component: ManageOrdersComponent },
-          { path: 'products', component: ManageProductsComponent }
+          {
+            path: 'products',
+            loadChildren: () => import('./components/manage-products/manage-products.module').then(m => m.ManageProductsModule)
+          }
         ]
       }
     ]
@@ -36,7 +37,6 @@ const routes: Routes = [
 export class AdminRoutingModule {
   static components = [
     AdminComponent,
-    ManageOrdersComponent,
-    ManageProductsComponent
+    ManageOrdersComponent
   ];
 }

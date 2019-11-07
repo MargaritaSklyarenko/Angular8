@@ -1,0 +1,11 @@
+<button (click)="onAddProduct()" appBoldBorder='10px'>Add product</button>
+<div class="products">
+    <app-manage-product-item  
+        *ngFor = 'let product of products | async' 
+        [product] = "product"
+        class="product" 
+        (editProduct)="onEditProduct($event)"
+        (deleteProduct)="onDeleteProduct($event)"
+        appHighlight>
+    </app-manage-product-item>
+</div>

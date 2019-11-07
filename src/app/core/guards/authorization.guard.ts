@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, CanLoad, UrlSegment } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, CanLoad, UrlSegment, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Route } from '@angular/compiler/src/core';
 import { AuthorizationService } from '../services/authorization.service';
@@ -8,7 +8,9 @@ import { AuthorizationService } from '../services/authorization.service';
   providedIn: 'root'
 })
 export class AuthorizationGuard implements CanActivate, CanLoad {
-  constructor(private authorizationService: AuthorizationService) {}
+  constructor(
+    private authorizationService: AuthorizationService,
+    private router: Router) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -20,10 +22,11 @@ export class AuthorizationGuard implements CanActivate, CanLoad {
     return this.isAdmin();
   }
 
-  isAdmin(){
+  isAdmin() {
     if (this.authorizationService.isAdmin) {
       return true;
     }
+    this.router.navigate(['/login']);
     return false;
   }
 }

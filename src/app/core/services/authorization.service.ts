@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
 
-import { Observable, of } from 'rxjs';
-import { delay, tap } from 'rxjs/operators';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AuthorizationService {
   isLoggedIn = false;
-  isAdmin: boolean
-
-  // store the URL so we can redirect after logging in
+  isAdmin: boolean;
   redirectUrl: string;
 
   login(admin: boolean = true): void {

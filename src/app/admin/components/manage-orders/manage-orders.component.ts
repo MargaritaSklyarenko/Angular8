@@ -1,15 +1,17 @@
 import { Component, OnInit } from '@angular/core';
+import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 
 @Component({
   selector: 'app-manage-orders',
   templateUrl: './manage-orders.component.html',
   styleUrls: ['./manage-orders.component.css']
 })
-export class ManageOrdersComponent implements OnInit {
+export class ManageOrdersComponent {
 
-  constructor() { }
+  constructor(public localStorageService: LocalStorageService) { }
 
-  ngOnInit() {
+  onRemoveOrdersHistory(): void {
+    this.localStorageService.removeItem('orders');
   }
 
 }

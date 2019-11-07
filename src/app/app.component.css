@@ -10,17 +10,3 @@
     
 	flex-wrap: wrap;
 }
-
-.main-nav ul {
-	margin: 1em 0 .5em;
-	text-align: center;
-}
-
-.main-nav li {
-	display: inline;
-}
-
-.main-nav a {
-	display: inline-block;
-	padding: .5em 1.5em;
-}

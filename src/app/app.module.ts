@@ -12,7 +12,7 @@ import { OrdersModule } from './orders/orders.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
   ],
   imports: [
     BrowserModule,

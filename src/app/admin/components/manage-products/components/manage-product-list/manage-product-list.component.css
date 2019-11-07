@@ -1,0 +1,16 @@
+.products {
+    border: 1px solid gray;
+    border-radius: 4px;
+    padding: 10px;
+    margin: 20px;
+    display: flex;
+    justify-content: space-around;
+    flex-flow: row wrap;
+}
+
+.product {   
+    padding: 10px;
+    margin: 20px;
+    border: 1px solid gray;
+    border-radius: 4px;
+}

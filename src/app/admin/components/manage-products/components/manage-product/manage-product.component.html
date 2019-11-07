@@ -1,0 +1,58 @@
+<div>
+    <form>
+        <div>
+          <label for="productName">Name</label>
+          <input type="text"
+              id="productName" name="productName"
+              placeholder="Name"
+              required
+              [(ngModel)]="product.productName">
+        </div>
+        <div>
+          <label for="description">Description</label>
+          <input type="text"
+              class="form-control"
+              id="description" name="description"
+              placeholder="Description"
+              [(ngModel)]="product.description">
+        </div>
+        <div>
+            <label for="description">Price</label>
+            <input type="text"
+                class="form-control"
+                id="price" name="price"
+                placeholder="Price"
+                [(ngModel)]="product.price">
+        </div>
+        <div>
+            <label for="description">Category</label>
+            <input type="text"
+                class="form-control"
+                id="category" name="category"
+                placeholder="Category"
+                [(ngModel)]="product.Category">
+        </div>
+        <div>
+            <label for="description">Product Id</label>
+            <input type="text"
+                class="form-control"
+                id="id" name="id"
+                placeholder="product Id"
+                [(ngModel)]="product.id">
+        </div>
+        <div *ngIf="isNew; then saveBlock else addBlock"></div>
+        <ng-template #saveBlock>
+            <button (click)="onSaveProduct()"
+                type="submit">Save
+            </button>
+        </ng-template>
+        <ng-template #addBlock>
+            <button (click)="onAddProduct()">
+                Add
+            </button>
+        </ng-template>
+        <button (click)="onGoBack()">
+            Back
+        </button>
+    </form>
+</div>

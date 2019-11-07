@@ -14,9 +14,11 @@ export class ProductListComponent implements OnInit, OnDestroy {
   products: Observable<ProductModel[]>;
   errMessage = '';
 
-  constructor(public productService: ProductService, 
+  constructor(
+    public productService: ProductService,
     public cartService: CartService,
-    private router: Router) { }
+    private router: Router
+    ) { }
 
   ngOnInit() {
     this.products = this.productService.getProducts();
@@ -41,7 +43,7 @@ export class ProductListComponent implements OnInit, OnDestroy {
   }
 
   onShowDetails(product: ProductModel): void {
-    const link = ['/details', product.productId];
+    const link = ['/details', product.id];
     this.router.navigate(link);
   }
 }
