@@ -7,8 +7,10 @@ import { AppComponent } from './app.component';
 import { CartModule } from './cart/cart.module';
 import { ProductsModule } from './products/products.module';
 import { LayoutModule } from './layout/layout.module';
+import { httpInterceptorProviders } from './core/interceptors';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersModule } from './orders/orders.module';
+
 
 @NgModule({
   declarations: [
@@ -23,7 +25,9 @@ import { OrdersModule } from './orders/orders.module';
     HttpClientModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    httpInterceptorProviders
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

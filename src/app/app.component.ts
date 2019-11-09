@@ -1,4 +1,5 @@
 import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
+import { AppSettingsService } from './app-settings.service';
 
 
 @Component({
@@ -9,7 +10,9 @@ import { Component, ViewChild, ElementRef, AfterViewInit } from '@angular/core';
 export class AppComponent implements AfterViewInit {
   @ViewChild('appTitle', {static: false}) title: ElementRef<HTMLElement>;
 
-  constructor() {}
+  constructor(appSettingsService: AppSettingsService) {
+    appSettingsService.loadAppSettings();
+  }
 
   ngAfterViewInit() {
       this.title.nativeElement.innerHTML = 'Shop';

@@ -49,13 +49,24 @@ export class ProductService {
     );
   }
 
-  deleteProduct(id: number) {
+  // Option for Observable method
+  // deleteProduct(id: number) {
+  //   const url = `${this.productUrl}/${id}`;\
+  //   return this.http.delete(url).pipe(
+  //     catchError(this.handleError)
+  //   );
+  // }
+
+  deleteProduct(id: number): Promise<any> {
     const url = `${this.productUrl}/${id}`;
 
-    return this.http.delete(url).pipe(
-      catchError(this.handleError)
+    return (
+      this.http
+        .delete(url)
+        .toPromise()
+        .catch(this.handleError)
     );
-  }
+}
 
   private handleError(err: HttpErrorResponse) {
     let errorMessage = '';

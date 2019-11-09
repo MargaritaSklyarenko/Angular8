@@ -33,8 +33,14 @@ export class ManageProductListComponent implements OnInit {
   }
 
   onDeleteProduct(product: ProductModel): void {
-    this.productService.deleteProduct(product.id).subscribe(
-      () => this.products = this.productService.getProducts()
-    );
+    // Option for Observable method
+    // this.productService.deleteProduct(product.id).subscribe(
+    //   () => this.products = this.productService.getProducts()
+    // );
+
+    this.productService
+      .deleteProduct(product.id)
+      .then(() => (this.products = this.productService.getProducts()))
+      .catch(err => console.log(err));
   }
 }
