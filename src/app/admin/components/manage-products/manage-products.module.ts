@@ -9,3 +9,5 @@ import { ManageProductsRoutingModule } from './manage-products-routing.module';
   declarations: [ManageProductsRoutingModule.components]
 })
 export class ManageProductsModule {}
+// Немного неожиданое расположение модуля - в папке components
+// может быть стоит в папке admin создать папку manage-products, а в ней уже все остальное.
