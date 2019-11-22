@@ -3,7 +3,7 @@ import { ProductModel } from '../models/product.model';
 import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
 
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, tap } from 'rxjs/operators';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -19,12 +19,12 @@ export class ProductService {
 
   getProducts(): Observable<ProductModel[]> {
     return this.http.get<ProductModel[]>(this.productUrl).pipe(
-      // tap(data => console.log('All: ' + JSON.stringify(data))),
+      tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-  addProducts(product: ProductModel): Observable<ProductModel> {
+  addProduct(product: ProductModel): Observable<ProductModel> {
     const body = JSON.stringify(product);
 
     return this.http.post<ProductModel>(this.productUrl, body, httpOptions).pipe(
@@ -32,7 +32,7 @@ export class ProductService {
     );
   }
 
-  editProducts(product: ProductModel): Observable<ProductModel> {
+  editProduct(product: ProductModel): Observable<ProductModel> {
     const url = `${this.productUrl}/${product.id}`;
     const body = JSON.stringify(product);
 

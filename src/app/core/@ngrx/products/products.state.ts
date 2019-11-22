@@ -2,10 +2,16 @@ import { Product, ProductModel, Category } from './../../../products/models/prod
 
 export interface ProductsState {
   data: ReadonlyArray<Product>;
+  selectedProduct: Readonly<Product>;
+  readonly loading: boolean;
+  readonly loaded: boolean;
+  readonly error: Error | string;
 }
 
-export const initialTasksState: ProductsState = {
-    data: [
-      new ProductModel(1, "Leaf Rake", Category.Garden, "Leaf rake with 48-inch wooden handle.", 19.95, "", true)
-    ]
+export const initialProductsState: ProductsState = {
+    data: [],
+    selectedProduct: null,
+    loading: false,
+    loaded: false,
+    error: null
 };

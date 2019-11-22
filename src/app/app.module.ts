@@ -10,6 +10,7 @@ import { LayoutModule } from './layout/layout.module';
 import { httpInterceptorProviders } from './core/interceptors';
 import { HttpClientModule } from '@angular/common/http';
 import { OrdersModule } from './orders/orders.module';
+import { RootStoreModule } from './core/@ngrx/root-store.module';
 
 
 @NgModule({
@@ -23,6 +24,7 @@ import { OrdersModule } from './orders/orders.module';
     ProductsModule,
     LayoutModule,
     HttpClientModule,
+    RootStoreModule,
     AppRoutingModule
   ],
   providers: [

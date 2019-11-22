@@ -15,7 +15,7 @@ export interface Product {
 }
 
 
-export class ProductModel implements Product{
+export class ProductModel implements Product {
     constructor(
       public id: number = null,
       public productName: string = '',

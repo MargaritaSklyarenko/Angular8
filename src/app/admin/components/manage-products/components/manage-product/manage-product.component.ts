@@ -1,7 +1,13 @@
+// @NgRx
+import { Store, select } from '@ngrx/store';
+import { AppState, ProductsState } from './../../../../../core/@ngrx';
+import * as ProductsActions from './../../../../../core/@ngrx/products/products.actions';
+
+
 import { Component, OnInit, Input } from '@angular/core';
-import { ProductModel } from 'src/app/products/models/product.model';
+import { ProductModel, Product } from 'src/app/products/models/product.model';
 import { Router, ActivatedRoute, ParamMap } from '@angular/router';
-import { ProductService } from 'src/app/products/services/product.service';
+
 import { switchMap, pluck } from 'rxjs/operators';
 import { Location } from '@angular/common';
 
@@ -15,7 +21,7 @@ export class ManageProductComponent implements OnInit {
   isNew: boolean;
 
   constructor(
-    public productService: ProductService,
+    private store: Store<AppState>,
     public activatedRoute: ActivatedRoute,
     private router: Router,
     private route: ActivatedRoute) { }
@@ -28,11 +34,15 @@ export class ManageProductComponent implements OnInit {
   }
 
   onSaveProduct(): void {
-    this.productService.editProducts(this.product).subscribe(() => this.onGoBack());
+    // this.productService.editProducts(this.product).subscribe(() => this.onGoBack());
+    const product = { ...this.product } as Product;
+    this.store.dispatch(ProductsActions.updateProduct({ product }));
   }
 
   onAddProduct(): void {
-    this.productService.addProducts(this.product).subscribe(() => this.onGoBack());
+    const product = { ...this.product } as Product;
+    this.store.dispatch(ProductsActions.createProduct({ product }));
+    // this.productService.addProducts(this.product).subscribe(() => this.onGoBack());
   }
 
   onGoBack(): void {

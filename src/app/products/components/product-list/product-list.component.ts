@@ -1,5 +1,6 @@
 // @Ngrx
 import { Store, select } from '@ngrx/store';
+
 import { AppState, ProductsState } from './../../../core/@ngrx';
 import * as ProductsActions from './../../../core/@ngrx/products/products.actions';
 
@@ -7,7 +8,7 @@ import * as ProductsActions from './../../../core/@ngrx/products/products.action
 import { Observable } from 'rxjs';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-//import { ProductService } from '../../services/product.service';
+// import { ProductService } from '../../services/product.service';
 import { ProductModel, Product } from '../../models/product.model';
 import { CartService } from '../../../cart/services/cart.service';
 import { Router } from '@angular/router';
@@ -22,16 +23,16 @@ export class ProductListComponent implements OnInit, OnDestroy {
   errMessage = '';
 
   constructor(
-    //public productService: ProductService,
+    // public productService: ProductService,
     public cartService: CartService,
     private router: Router,
     private store: Store<AppState>
     ) { }
 
   ngOnInit() {
-    console.log('We have a store! ', this.store);
-    //this.products = this.productService.getProducts();
+    // this.products = this.productService.getProducts();
     this.productsState$ = this.store.pipe(select('products'));
+    this.store.dispatch(ProductsActions.getProducts());
     // Used asynk pipe instead of code below
     // this.productService.getProducts().subscribe(
     //  products => this.products = products,
@@ -56,14 +57,4 @@ export class ProductListComponent implements OnInit, OnDestroy {
     const link = ['/details', product.id];
     this.router.navigate(link);
   }
-
-//   onCompleteTask(task: TaskModel): void {
-//     this.updateTask(task).catch(err => console.log(err));
-//     // task is not plain object
-//     // taskToComplete is a plain object
-//     const taskToComplete: Task = { ...task };
-//     this.store.dispatch(TasksActions.completeTask({ task: taskToComplete }));
-// }
-
-  
 }

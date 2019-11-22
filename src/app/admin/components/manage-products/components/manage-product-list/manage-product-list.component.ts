@@ -1,6 +1,11 @@
+// @NgRx
+import { Store, select } from '@ngrx/store';
+import { AppState, ProductsState } from './../../../../../core/@ngrx';
+import * as ProductActions from './../../../../../core/@ngrx/products/products.actions';
+
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/products/services/product.service';
-import { ProductModel } from 'src/app/products/models/product.model';
+import { ProductModel, Product } from 'src/app/products/models/product.model';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
 
@@ -14,6 +19,7 @@ export class ManageProductListComponent implements OnInit {
   products: Observable<ProductModel[]>;
 
   constructor(
+    private store: Store<AppState>,
     public productService: ProductService,
     private router: Router,
     public activatedRoute: ActivatedRoute) { }
@@ -38,9 +44,12 @@ export class ManageProductListComponent implements OnInit {
     //   () => this.products = this.productService.getProducts()
     // );
 
-    this.productService
-      .deleteProduct(product.id)
-      .then(() => (this.products = this.productService.getProducts()))
-      .catch(err => console.log(err));
+    const productToDelete: Product = { ...product };
+    this.store.dispatch(ProductActions.deleteProduct({ product: productToDelete }));
+
+    // this.productService
+    //   .deleteProduct(product.id)
+    //   .then(() => (this.products = this.productService.getProducts()))
+    //   .catch(err => console.log(err));
   }
 }

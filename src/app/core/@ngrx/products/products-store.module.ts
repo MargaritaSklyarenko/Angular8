@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('tasks', productsReducer)
+    StoreModule.forFeature('products', productsReducer)
   ]
 })
 export class ProductsStoreModule { }
