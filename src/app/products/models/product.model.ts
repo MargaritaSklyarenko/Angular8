@@ -4,7 +4,18 @@ export enum Category {
   Other = 'Other'
 }
 
-export class ProductModel {
+export interface Product {
+  id?: number;
+  productName?: string;
+  productCategory?: Category;
+  description?: string;
+  price?: number;
+  imageUrl?: string;
+  isAvailable?: boolean;
+}
+
+
+export class ProductModel implements Product{
     constructor(
       public id: number = null,
       public productName: string = '',

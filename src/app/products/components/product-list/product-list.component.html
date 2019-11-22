@@ -1,5 +1,5 @@
 <app-product 
-    *ngFor = 'let product of products | async' 
+    *ngFor = 'let product of (productsState$ | async).data' 
     [product] = "product" 
     (addToCartProduct)="onAddToCartProduct($event)"
     (showProductDetails)="onShowDetails($event)"
