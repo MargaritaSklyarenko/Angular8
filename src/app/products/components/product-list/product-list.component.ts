@@ -34,7 +34,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.products$ = this.store.pipe(select(selectProductsData));
     this.productsError$ = this.store.pipe(select(selectProductsError));
-    this.store.dispatch(ProductsActions.getProducts());
   }
 
   ngOnDestroy() {
@@ -55,6 +54,5 @@ export class ProductListComponent implements OnInit, OnDestroy {
     this.store.dispatch(RouterActions.go({
       path: link
     }));
-
   }
 }
