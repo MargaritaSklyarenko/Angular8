@@ -32,8 +32,8 @@ import { ProductsStoreModule } from './products/products-store.module';
     }),
     StoreRouterConnectingModule.forRoot({
       stateKey: 'router',
-      routerState: RouterState.Minimal
-      // serializer: CustomSerializer // has a priority over routerState
+      routerState: RouterState.Minimal,
+      serializer: CustomSerializer // has a priority over routerState
     }),
     EffectsModule.forRoot([]),
     ProductsStoreModule,
