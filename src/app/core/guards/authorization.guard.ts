@@ -1,5 +1,10 @@
+// @Ngrx
+import { Store } from '@ngrx/store';
+import { AppState } from './../@ngrx';
+import * as RouterActions from './../@ngrx/router/router.actions';
+
 import { Injectable } from '@angular/core';
-import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, CanLoad, UrlSegment, Router } from '@angular/router';
+import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, CanLoad, UrlSegment } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Route } from '@angular/compiler/src/core';
 import { AuthorizationService } from '../services/authorization.service';
@@ -10,7 +15,8 @@ import { AuthorizationService } from '../services/authorization.service';
 export class AuthorizationGuard implements CanActivate, CanLoad {
   constructor(
     private authorizationService: AuthorizationService,
-    private router: Router) {}
+    private store: Store<AppState>
+    ) {}
 
   canActivate(
     next: ActivatedRouteSnapshot,
@@ -26,7 +32,10 @@ export class AuthorizationGuard implements CanActivate, CanLoad {
     if (this.authorizationService.isAdmin) {
       return true;
     }
-    this.router.navigate(['/login']);
+    this.store.dispatch(RouterActions.go({
+      path: ['/login']
+    }));
+
     return false;
   }
 }

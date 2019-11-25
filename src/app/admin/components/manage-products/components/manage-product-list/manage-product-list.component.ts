@@ -2,6 +2,7 @@
 import { Store, select } from '@ngrx/store';
 import { AppState, ProductsState } from './../../../../../core/@ngrx';
 import * as ProductActions from './../../../../../core/@ngrx/products/products.actions';
+import * as RouterActions from './../../../../../core/@ngrx/router/router.actions';
 
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from 'src/app/products/services/product.service';
@@ -30,12 +31,21 @@ export class ManageProductListComponent implements OnInit {
 
   onEditProduct(product: ProductModel): void {
     const link = ['./edit', product.id];
-    this.router.navigate(link, {relativeTo: this.activatedRoute});
+    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    this.store.dispatch(RouterActions.go({
+      path: link,
+      queryParams: {relativeTo: this.activatedRoute}
+    }));
+
   }
 
   onAddProduct(): void {
     const link = ['./add'];
-    this.router.navigate(link, {relativeTo: this.activatedRoute});
+    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    this.store.dispatch(RouterActions.go({
+      path: link,
+      queryParams: {relativeTo: this.activatedRoute}
+    }));
   }
 
   onDeleteProduct(product: ProductModel): void {

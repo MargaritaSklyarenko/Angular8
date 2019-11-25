@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, createEffect, ofType , OnInitEffects, OnRunEffects, EffectNotification } from '@ngrx/effects';
 import { Action } from '@ngrx/store';
 import * as ProductsActions from './products.actions';
-import { Router } from '@angular/router';
+import * as RouterActions from './../router/router.actions';
 // rxjs
 import { Observable, of } from 'rxjs';
 import { pluck, switchMap, map, catchError, concatMap, takeUntil, tap } from 'rxjs/operators';
@@ -15,7 +15,6 @@ import { ProductService } from './../../../products/services/product.service';
 export class PoductsEffects implements OnInitEffects, OnRunEffects {
     constructor(
         private actions$: Actions,
-        private router: Router,
         private productService: ProductService
     ) {
         console.log('[PRODUCTS EFFECTS]');
@@ -47,7 +46,6 @@ export class PoductsEffects implements OnInitEffects, OnRunEffects {
           .editProduct(product)
           .pipe(
             map(updatedProduct => {
-                this.router.navigate(['/admin/products']); // ? SAME
                 return ProductsActions.updateProductSuccess({ product: updatedProduct });
             }),
             catchError(error => of(ProductsActions.updateProductError({ error })))
@@ -65,7 +63,6 @@ export class PoductsEffects implements OnInitEffects, OnRunEffects {
           .addProduct(product)
           .pipe(
             map(createdProduct => {
-                this.router.navigate(['/home']); // ? NOT HOMR
                 return ProductsActions.createProductSuccess({ product: createdProduct });
             } ),
             catchError(error => of(ProductsActions.createProductError({ error })))
@@ -73,6 +70,18 @@ export class PoductsEffects implements OnInitEffects, OnRunEffects {
       )
     )
   );
+
+  createUpdateProductSuccess$: Observable<Action> = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(ProductsActions.createProductSuccess, ProductsActions.updateProductSuccess),
+      map(action =>
+        RouterActions.go({
+          path: ['/home'] // not home
+        })
+      )
+    );
+  });
+
 
   deleteProduct$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(

@@ -4,6 +4,8 @@ import { Store, select } from '@ngrx/store';
 import { AppState, ProductsState, selectProductsData, selectProductsError  } from './../../../core/@ngrx';
 import * as ProductsActions from './../../../core/@ngrx/products/products.actions';
 
+import * as RouterActions from './../../../core/@ngrx/router/router.actions';
+
 // rxjs
 import { Observable } from 'rxjs';
 
@@ -26,7 +28,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
   constructor(
     // public productService: ProductService,
     public cartService: CartService,
-    private router: Router,
     private store: Store<AppState>
   ) { }
 
@@ -51,6 +52,9 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   onShowDetails(product: ProductModel): void {
     const link = ['/details', product.id];
-    this.router.navigate(link);
+    this.store.dispatch(RouterActions.go({
+      path: link
+    }));
+
   }
 }

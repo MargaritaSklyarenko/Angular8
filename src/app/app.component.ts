@@ -30,6 +30,6 @@ export class AppComponent implements AfterViewInit {
   }
 
   ngAfterViewInit() {
-      this.title.nativeElement.innerHTML = 'Shop';
+    this.title.nativeElement.innerHTML = 'Shop';
   }
 }

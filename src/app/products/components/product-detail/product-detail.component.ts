@@ -2,6 +2,7 @@
 import { Store, select } from '@ngrx/store';
 import { AppState, selectSelectedProductByUrl } from './../../../core/@ngrx';
 import * as ProductActions from './../../../core/@ngrx/products/products.actions';
+import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ProductModel, Product } from '../../models/product.model';
@@ -21,8 +22,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(
-    // public productService: ProductService,
-    private router: Router,
     private store: Store<AppState>
   ) { }
 
@@ -53,7 +52,9 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   onGoBack(): void {
-    this.router.navigate(['/home']);
+    this.store.dispatch(RouterActions.go({
+      path: ['/home']
+    }));
   }
 
   ngOnDestroy(): void {

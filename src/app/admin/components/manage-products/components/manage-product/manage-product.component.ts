@@ -2,7 +2,7 @@
 import { Store, select } from '@ngrx/store';
 import { AppState, ProductsState } from './../../../../../core/@ngrx';
 import * as ProductsActions from './../../../../../core/@ngrx/products/products.actions';
-
+import * as RouterActions from './../../../../../core/@ngrx/router/router.actions';
 
 import { Component, OnInit, Input } from '@angular/core';
 import { ProductModel, Product } from 'src/app/products/models/product.model';
@@ -23,7 +23,6 @@ export class ManageProductComponent implements OnInit {
   constructor(
     private store: Store<AppState>,
     public activatedRoute: ActivatedRoute,
-    private router: Router,
     private route: ActivatedRoute) { }
 
   ngOnInit() {
@@ -46,6 +45,8 @@ export class ManageProductComponent implements OnInit {
   }
 
   onGoBack(): void {
-    this.router.navigate(['/admin/products']);
+    this.store.dispatch(RouterActions.go({
+      path: ['/admin/products']
+    }));
   }
 }

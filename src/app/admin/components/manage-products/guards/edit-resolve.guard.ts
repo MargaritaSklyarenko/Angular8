@@ -1,3 +1,5 @@
+import * as RouterActions from './../../../../core/@ngrx/router/router.actions';
+
 import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router } from '@angular/router';
 import { Observable, of } from 'rxjs';
@@ -10,9 +12,7 @@ import { ProductService } from 'src/app/products/services/product.service';
 })
 export class EditResolveGuard implements Resolve<ProductModel> {
 
-  constructor(
-    private router: Router,
-    public productService: ProductService) {}
+  constructor(public productService: ProductService) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<ProductModel | null> {
     if (!route.paramMap.has('id')) {
@@ -26,13 +26,19 @@ export class EditResolveGuard implements Resolve<ProductModel> {
         if (product) {
           return product;
         } else {
-          this.router.navigate(['/home']);
+          this.store.dispatch(RouterActions.go({
+            path: ['/home']
+          }));
+      
           return null;
         }
       }),
       take(1),
       catchError(() => {
-        this.router.navigate(['/home']);
+        this.store.dispatch(RouterActions.go({
+          path: ['/home']
+        }));
+    
         return of(null);
       })
     );

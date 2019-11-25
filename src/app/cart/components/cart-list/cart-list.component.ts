@@ -1,8 +1,9 @@
+import * as RouterActions from './../../../core/@ngrx/router/router.actions';
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services';
 import { CartModel } from '../../models';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -16,8 +17,8 @@ export class CartListComponent implements OnInit, OnDestroy {
 
   constructor(
     public cartService: CartService,
-    public localStorageService: LocalStorageService,
-    private router: Router) { }
+    public localStorageService: LocalStorageService
+  ) { }
 
   ngOnInit() {
     this.carts = this.cartService.getCarts();
@@ -38,7 +39,10 @@ export class CartListComponent implements OnInit, OnDestroy {
   onBuyCartItems(): void {
     this.localStorageService.addItem('orders', this.carts);
     this.clearCart();
-    this.router.navigate(['/orders']);
+    this.store.dispatch(RouterActions.go({
+      path: ['/orders']
+    }));
+
   }
 
   clearCart(): void {
