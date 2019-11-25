@@ -38,21 +38,6 @@ export class PoductsEffects implements OnInitEffects, OnRunEffects {
         )
     );
 
-    getProduct$: Observable<Action> = createEffect(() =>
-    this.actions$.pipe(
-      ofType(ProductsActions.getProduct),
-      pluck('productId'),
-      switchMap(productId =>
-        this.productService
-        .getProduct(productId)
-            .pipe(
-                map(product => ProductsActions.getProductSuccess({ product })),
-                catchError(error => of(ProductsActions.getProductError({ error })))
-        )
-      )
-    )
-  );
-
   updateProduct$: Observable<Action> = createEffect(() =>
     this.actions$.pipe(
       ofType(ProductsActions.updateProduct),

@@ -4,11 +4,6 @@ import { Product } from './../../../products/models/product.model';
 
 export const getProducts = createAction('[Product List Page (App)] GET_PRODUCTS');
 
-export const getProduct = createAction(
-  '[Add/Edit Product Page (App)] GET_PRODUCT',
-  props<{ productId: number }>()
-);
-
 export const createProduct = createAction(
   '[Product List Page] CREATE_PRODUCT',
   props<{ product: Product }>()
@@ -36,16 +31,6 @@ export const getProductsSuccess = createAction(
 
 export const getProductsError = createAction(
     '[Get Products Effect] GET_PRODUCTS_ERROR',
-    props<{ error: Error | string }>()
-);
-
-export const getProductSuccess = createAction(
-    '[Get Product Effect] GET_PRODUCT_SUCCESS',
-    props<{ product: Product }>()
-);
-
-export const getProductError = createAction(
-    '[Get Product Effect] GET_PRODUCT_ERROR',
     props<{ error: Error | string }>()
 );
 
