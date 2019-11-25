@@ -1,6 +1,6 @@
 // @NgRx
 import { Store, select } from '@ngrx/store';
-import { AppState, ProductsState } from './../../../core/@ngrx';
+import { AppState, ProductsState, selectSelectedProduct } from './../../../core/@ngrx';
 import * as ProductActions from './../../../core/@ngrx/products/products.actions';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -29,12 +29,13 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     let observer = {
-      next: productsState => {
-        if (productsState.selectedProduct) {
-          this.product = {...productsState.selectedProduct} as ProductModel;
+      next: product => {
+        if (product) {
+          this.product = {...product} as ProductModel;
         } else {
           this.product = new ProductModel();
         }
+  
       },
       error(err) {
         console.log(err);
@@ -46,7 +47,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
 
     this.store
       .pipe(
-        select('products'),
+        select(selectSelectedProduct),
         takeUntil(this.componentDestroyed$)
       )
       .subscribe(observer);

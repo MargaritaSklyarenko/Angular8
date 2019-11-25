@@ -1,7 +1,7 @@
 // @Ngrx
 import { Store, select } from '@ngrx/store';
 
-import { AppState, ProductsState } from './../../../core/@ngrx';
+import { AppState, ProductsState, selectProductsData, selectProductsError  } from './../../../core/@ngrx';
 import * as ProductsActions from './../../../core/@ngrx/products/products.actions';
 
 // rxjs
@@ -18,7 +18,8 @@ import { Router } from '@angular/router';
   styleUrls: ['./product-list.component.css']
 })
 export class ProductListComponent implements OnInit, OnDestroy {
-  productsState$: Observable<ProductsState>;
+  products$: Observable<ReadonlyArray<Product>>;
+  productsError$: Observable<Error | string>;
   products: Observable<ProductModel[]>;
   errMessage = '';
 
@@ -27,17 +28,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
     public cartService: CartService,
     private router: Router,
     private store: Store<AppState>
-    ) { }
+  ) { }
 
   ngOnInit() {
-    // this.products = this.productService.getProducts();
-    this.productsState$ = this.store.pipe(select('products'));
+    this.products$ = this.store.pipe(select(selectProductsData));
+    this.productsError$ = this.store.pipe(select(selectProductsError));
     this.store.dispatch(ProductsActions.getProducts());
-    // Used asynk pipe instead of code below
-    // this.productService.getProducts().subscribe(
-    //  products => this.products = products,
-    //  err => this.errMessage = <any>err
-    // );
   }
 
   ngOnDestroy() {
