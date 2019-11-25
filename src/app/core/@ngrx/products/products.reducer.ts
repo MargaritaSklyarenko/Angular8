@@ -1,6 +1,6 @@
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { ProductsState, initialProductsState } from './products.state';
+import { adapter, ProductsState, initialProductsState } from './products.state';
 import * as ProductsActions from './products.actions';
 
 const reducer = createReducer(
@@ -14,13 +14,7 @@ const reducer = createReducer(
     }),
   on(ProductsActions.getProductsSuccess, (state, { products }) => {
     console.log('GET_PRODUCTS_SUCCESS action being handled!');
-    const data = [...products];
-    return {
-      ...state,
-      data,
-      loading: false,
-      loaded: true
-    };
+    return adapter.addAll(products, {...state, loading: false, loaded: true });
   }),
   on(ProductsActions.getProductsError,
     (state, { error }) => {
@@ -38,12 +32,7 @@ const reducer = createReducer(
   }),
   on(ProductsActions.createProductSuccess, (state, { product }) => {
     console.log('CREATE_PRODUCT_SUCCESS action being handled!');
-    const data = [...state.data, { ...product }];
-
-    return {
-      ...state,
-      data
-    };
+    return adapter.addOne(product, state);
   }),
   on(
     ProductsActions.createProductError,
@@ -63,16 +52,7 @@ const reducer = createReducer(
   }),
   on(ProductsActions.updateProductSuccess, (state, { product }) => {
     console.log('UPDATE_PRODUCT_SUCCESS action being handled!');
-    const data = [...state.data];
-
-    const index = data.findIndex(t => t.id === product.id);
-
-    data[index] = { ...product };
-
-    return {
-      ...state,
-      data
-    };
+    return adapter.updateOne({ id: product.id, changes: product }, state);
   }),
   on(ProductsActions.updateProductError, (state, { error }) => {
     console.log('UPDATE_PRODUCT_ERROR action being handled!');
@@ -87,12 +67,7 @@ const reducer = createReducer(
   }),
   on(ProductsActions.deleteProductSuccess, (state, { product }) => {
     console.log('DELETE_PRODUCT_SUCCESS action being handled!');
-    const data = state.data.filter(p => p.id !== product.id);
-
-    return {
-      ...state,
-      data
-    };
+    return adapter.removeOne(product.id, state);
   }),
 );
 
