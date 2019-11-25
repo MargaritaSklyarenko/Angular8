@@ -1,10 +1,5 @@
 // @Ngrx
-import { Store, select } from '@ngrx/store';
-
-import { AppState, ProductsState, selectProductsData, selectProductsError  } from './../../../core/@ngrx';
-import * as ProductsActions from './../../../core/@ngrx/products/products.actions';
-
-import * as RouterActions from './../../../core/@ngrx/router/router.actions';
+import { ProductsFacade } from './../../../core/@ngrx';
 
 // rxjs
 import { Observable } from 'rxjs';
@@ -28,12 +23,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
   constructor(
     // public productService: ProductService,
     public cartService: CartService,
-    private store: Store<AppState>
+    public productsFacade: ProductsFacade
   ) { }
 
   ngOnInit() {
-    this.products$ = this.store.pipe(select(selectProductsData));
-    this.productsError$ = this.store.pipe(select(selectProductsError));
+    this.products$ = this.productsFacade.products$;
+    this.productsError$ = this.productsFacade.productsError$;
   }
 
   ngOnDestroy() {
@@ -51,8 +46,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   onShowDetails(product: ProductModel): void {
     const link = ['/details', product.id];
-    this.store.dispatch(RouterActions.go({
-      path: link
-    }));
+    this.productsFacade.goTo({ path: link });
   }
 }

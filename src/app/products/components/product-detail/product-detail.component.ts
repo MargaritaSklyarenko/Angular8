@@ -1,4 +1,6 @@
 // @NgRx
+import { ProductsFacade } from './../../../core/@ngrx';
+
 import { Store, select } from '@ngrx/store';
 import { AppState, selectSelectedProductByUrl } from './../../../core/@ngrx';
 import * as ProductActions from './../../../core/@ngrx/products/products.actions';
@@ -22,7 +24,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   private componentDestroyed$: Subject<void> = new Subject<void>();
 
   constructor(
-    private store: Store<AppState>
+    private productsFacade: ProductsFacade
   ) { }
 
   ngOnInit() {
@@ -43,7 +45,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
       }
     };
 
-    this.store
+    this.productsFacade.selectedProductByUrl$
       .pipe(
         select(selectSelectedProductByUrl),
         takeUntil(this.componentDestroyed$)
@@ -52,9 +54,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   onGoBack(): void {
-    this.store.dispatch(RouterActions.go({
-      path: ['/home']
-    }));
+    this.productsFacade.goTo({ path: ['/home'] });
   }
 
   ngOnDestroy(): void {
