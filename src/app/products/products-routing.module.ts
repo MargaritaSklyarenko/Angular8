@@ -8,7 +8,7 @@ const routes: Routes = [
   {
     path: 'home',
     component: ProductListComponent,
-    canActivate: [ProductsStatePreloadingGuard],
+   // canActivate: [ProductsStatePreloadingGuard],
   },
   {
     path: 'details/:id',

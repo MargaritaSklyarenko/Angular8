@@ -12,13 +12,15 @@ import { ProductService } from './../../../products/services/product.service';
 
 
 @Injectable()
-export class PoductsEffects implements OnInitEffects, OnRunEffects {
+export class ProductsEffects implements OnInitEffects, OnRunEffects {
     constructor(
         private actions$: Actions,
         private productService: ProductService
     ) {
         console.log('[PRODUCTS EFFECTS]');
     }
+
+
 
     getProducts$: Observable<Action> = createEffect(() =>
         this.actions$.pipe(
@@ -91,28 +93,33 @@ export class PoductsEffects implements OnInitEffects, OnRunEffects {
         this.productService
         .deleteProduct(product.id)
         .then(() => {
-          return ProductsActions.getProductSuccess({ product });
+          return ProductsActions.deleteProductSuccess({ product });
         })
-        .catch(error => ProductsActions.getProductError({ error }))
+        .catch(error => ProductsActions.deleteProductError({ error }))
         )
     )
     );
-     // Implement this interface to dispatch a custom action after the effect has been added.
-    // You can listen to this action in the rest of the application
-    // to execute something after the effect is registered.
-    ngrxOnInitEffects(): Action {
-      console.log('ngrxOnInitEffects is called');
-      return { type: '[ProductsEffects]: Init' };
-  }
 
-  // Implement the OnRunEffects interface to control the lifecycle
-  // of the resolved effects.
-  ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>) {
-    return resolvedEffects$.pipe(
-      tap(val => console.log('ngrxOnRunEffects:', val)),
-      takeUntil(this.actions$.pipe(ofType(ProductsActions.createProduct)))
-    );
-  }
+          // 3
+// Implement this interface to dispatch a custom action after the effect has been added.
+// You can listen to this action in the rest of the application
+// to execute something after the effect is registered.
+ngrxOnInitEffects(): Action {
+  console.log('ngrxOnInitEffects is called');
+  return { type: '[ProductsEffects]: Init' };
+}
+
+// Implement the OnRunEffects interface to control the lifecycle
+// of the resolved effects.
+ngrxOnRunEffects(resolvedEffects$: Observable<EffectNotification>) {
+  return resolvedEffects$.pipe(
+    tap(val => console.log('ngrxOnRunEffects:', val)),
+    // perform until create new task
+    // only for demo purpose
+    takeUntil(this.actions$.pipe(ofType(ProductsActions.createProduct)))
+  );
+}
+
 }
 
 

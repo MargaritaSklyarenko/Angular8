@@ -8,8 +8,7 @@ const reducer = createReducer(
   on(ProductsActions.getProducts, state => {
     console.log('GET_PRODUCTS action being handled!');
     return {
-        ...state,
-        loading: true
+        ...state
       };
     }),
   on(ProductsActions.getProductsSuccess, (state, { products }) => {

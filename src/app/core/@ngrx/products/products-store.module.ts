@@ -4,12 +4,15 @@ import { productsReducer } from './products.reducer';
 
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EffectsModule } from '@ngrx/effects';
+import { ProductsEffects } from './products.effects';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    StoreModule.forFeature('products', productsReducer)
+    StoreModule.forFeature('products', productsReducer),
+    EffectsModule.forFeature([ProductsEffects])
   ]
 })
 export class ProductsStoreModule { }

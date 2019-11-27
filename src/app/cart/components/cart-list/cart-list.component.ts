@@ -1,5 +1,8 @@
 import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 
+import { Store } from '@ngrx/store';
+import { AppState } from './../../../core/@ngrx';
+
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services';
 import { CartModel } from '../../models';
@@ -16,6 +19,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   fields = ['name', 'count', 'price'];
 
   constructor(
+    private store: Store<AppState>,
     public cartService: CartService,
     public localStorageService: LocalStorageService
   ) { }

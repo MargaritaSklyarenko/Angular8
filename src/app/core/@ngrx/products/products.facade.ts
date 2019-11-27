@@ -31,15 +31,15 @@ export class ProductsFacade {
     this.selectedProductByUrl$ = this.store.pipe(select(selectSelectedProductByUrl));
   }
 
-  createTask(props: { product: Product }) {
+  createProduct(props: { product: Product }) {
     this.store.dispatch(ProductsActions.createProduct(props));
   }
 
-  updateTask(props: { product: Product }) {
+  updateProduct(props: { product: Product }) {
     this.store.dispatch(ProductsActions.updateProduct(props));
   }
 
-  deleteTask(props: { product: Product }) {
+  deleteProduct(props: { product: Product }) {
     this.store.dispatch(ProductsActions.deleteProduct(props));
   }
 

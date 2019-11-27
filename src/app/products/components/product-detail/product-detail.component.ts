@@ -35,7 +35,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         } else {
           this.product = new ProductModel();
         }
-  
       },
       error(err) {
         console.log(err);

@@ -1,4 +1,4 @@
-<p *ngIf="(tasksError$ | async) as value">{{value}}</p>
+<p *ngIf="(productsError$ | async) as value">{{value}}</p>
 <app-product 
     *ngFor = 'let product of (products$ | async)' 
     [product] = "product" 

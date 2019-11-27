@@ -31,7 +31,7 @@ export class ManageProductListComponent implements OnInit {
 
   onEditProduct(product: ProductModel): void {
     const link = ['./edit', product.id];
-    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    // this.router.navigate(link, {relativeTo: this.activatedRoute});
     this.store.dispatch(RouterActions.go({
       path: link,
       queryParams: {relativeTo: this.activatedRoute}
@@ -41,7 +41,7 @@ export class ManageProductListComponent implements OnInit {
 
   onAddProduct(): void {
     const link = ['./add'];
-    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    // this.router.navigate(link, {relativeTo: this.activatedRoute});
     this.store.dispatch(RouterActions.go({
       path: link,
       queryParams: {relativeTo: this.activatedRoute}

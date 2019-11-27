@@ -23,27 +23,21 @@ export class ProductExistsGuard implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot): Observable<boolean> {
     return checkStore(this.store).pipe(
       switchMap(() => {
-        const id = +route.paramMap.get('taskID');
-        return this.hasTask(id);
+        const id = +route.paramMap.get('productID');
+        return this.hasProduct(id);
       })
     );
   }
 
-  private hasTask(id: number): Observable<boolean> {
+  private hasProduct(id: number): Observable<boolean> {
     return this.store.pipe(
       select(selectProductsData),
-
-      // check if task with id exists
-      map(tasks => !!tasks.find(task => task.id === id)),
-
-      // make a side effect
+      map(products => !!products.find(product => product.id === id)),
       tap(result => {
         if (!result) {
           this.store.dispatch(RouterActions.go({ path: ['/home'] }));
         }
       }),
-
-      // automatically unsubscribe
       take(1)
     );
   }

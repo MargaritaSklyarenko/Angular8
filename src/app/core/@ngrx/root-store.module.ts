@@ -11,13 +11,14 @@ import { routerReducers, CustomSerializer, RouterEffects } from './router';
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ProductsStoreModule } from './products/products-store.module';
+import { EntityStoreModule } from './data/entity-store.module';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    metaReducers,
     StoreModule.forRoot(routerReducers, {
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,
@@ -35,9 +36,10 @@ import { ProductsStoreModule } from './products/products-store.module';
       serializer: CustomSerializer // has a priority over routerState
     }),
     EffectsModule.forRoot([RouterEffects]),
-    ProductsStoreModule,
     // Instrumentation must be imported after importing StoreModule (config is optional)
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    ProductsStoreModule,
+    EntityStoreModule
   ]
 })
 export class RootStoreModule { }

@@ -2,6 +2,7 @@ import { Product} from './../../../products/models/product.model';
 import { createEntityAdapter, EntityState, EntityAdapter } from '@ngrx/entity';
 
 export interface ProductsState extends EntityState<Product>  {
+  data: ReadonlyArray<Product>;
   readonly loading: boolean;
   readonly loaded: boolean;
   readonly error: Error | string;
@@ -21,8 +22,9 @@ export const adapter: EntityAdapter<Product> = createEntityAdapter<Product>({
   // sortComparer: sortProductsByPrice
 });
 
-export const initialProductsState: ProductsState = {
+export const initialProductsState: ProductsState = adapter.getInitialState({
+    data: [],
     loading: false,
     loaded: false,
     error: null
-};
+});
