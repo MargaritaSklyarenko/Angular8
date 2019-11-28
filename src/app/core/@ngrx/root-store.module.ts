@@ -16,8 +16,8 @@ import { ProductsStoreModule } from './products/products-store.module';
   declarations: [],
   imports: [
     CommonModule,
-    metaReducers,
     StoreModule.forRoot(routerReducers, {
+      metaReducers,
       runtimeChecks: {
         strictStateImmutability: true,
         strictActionImmutability: true,

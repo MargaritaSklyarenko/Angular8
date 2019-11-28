@@ -4,6 +4,7 @@ import { ProductListComponent, ProductComponent } from './components';
 import { SharedModule } from '../shared/shared.module';
 import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { ProductRoutingModule } from './products-routing.module';
+import { ProductsStatePreloadingGuard, ProductExistsGuard } from './guards';
 
 @NgModule({
   declarations: [
@@ -15,6 +16,10 @@ import { ProductRoutingModule } from './products-routing.module';
     CommonModule,
     SharedModule,
     ProductRoutingModule
+  ],
+  providers: [
+    ProductsStatePreloadingGuard,
+    ProductExistsGuard
   ],
   exports: [
     ProductListComponent,

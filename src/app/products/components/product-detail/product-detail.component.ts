@@ -1,16 +1,12 @@
 // @NgRx
 import { Store, select } from '@ngrx/store';
 import { AppState, selectSelectedProductByUrl } from './../../../core/@ngrx';
-import * as ProductActions from './../../../core/@ngrx/products/products.actions';
 import * as RouterActions from './../../../core/@ngrx/router/router.actions';
 
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ProductModel, Product } from '../../models/product.model';
-import { Router } from '@angular/router';
-import { Observable, Subject } from 'rxjs';
+import { ProductModel } from '../../models/product.model';
+import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-
-// import { ProductService } from '../../services/product.service';
 
 @Component({
   selector: 'app-product-detail',
@@ -33,7 +29,6 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
         } else {
           this.product = new ProductModel();
         }
-  
       },
       error(err) {
         console.log(err);
@@ -52,9 +47,7 @@ export class ProductDetailComponent implements OnInit, OnDestroy {
   }
 
   onGoBack(): void {
-    this.store.dispatch(RouterActions.go({
-      path: ['/home']
-    }));
+    this.store.dispatch(RouterActions.back());
   }
 
   ngOnDestroy(): void {

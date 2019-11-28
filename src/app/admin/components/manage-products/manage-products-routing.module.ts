@@ -9,6 +9,7 @@ import {
 
 import { ManageProductsComponent } from './manage-products.component';
 import { EditResolveGuard } from './guards/edit-resolve.guard';
+import { ProductsStatePreloadingGuard, ProductExistsGuard } from '../../../products/guards';
 
 const routes: Routes = [
     {
@@ -24,11 +25,13 @@ const routes: Routes = [
           component: ManageProductComponent,
           resolve: {
             product: EditResolveGuard
-          }
+          },
+          canActivate: [ProductExistsGuard]
         },
         {
           path: '',
-          component: ManageProductListComponent
+          component: ManageProductListComponent,
+          canActivate: [ProductsStatePreloadingGuard],
         }
       ]
     }

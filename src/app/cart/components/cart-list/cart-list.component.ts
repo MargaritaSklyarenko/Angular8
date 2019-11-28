@@ -4,6 +4,8 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services';
 import { CartModel } from '../../models';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/@ngrx';
 
 @Component({
   selector: 'app-cart-list',
@@ -16,6 +18,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   fields = ['name', 'count', 'price'];
 
   constructor(
+    private store: Store<AppState>,
     public cartService: CartService,
     public localStorageService: LocalStorageService
   ) { }

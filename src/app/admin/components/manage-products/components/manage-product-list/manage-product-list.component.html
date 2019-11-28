@@ -1,7 +1,8 @@
 <button (click)="onAddProduct()" appBoldBorder='10px'>Add product</button>
+<p *ngIf="(productsError$ | async) as value">{{value}}</p>
 <div class="products">
     <app-manage-product-item  
-        *ngFor = 'let product of products | async' 
+        *ngFor = 'let product of (products$ | async)' 
         [product] = "product"
         class="product" 
         (editProduct)="onEditProduct($event)"

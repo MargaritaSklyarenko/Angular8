@@ -1,15 +1,14 @@
 // @NgRx
-import { Store, select } from '@ngrx/store';
-import { AppState, ProductsState } from './../../../../../core/@ngrx';
+import { Store } from '@ngrx/store';
+import { AppState } from './../../../../../core/@ngrx';
 import * as ProductsActions from './../../../../../core/@ngrx/products/products.actions';
 import * as RouterActions from './../../../../../core/@ngrx/router/router.actions';
 
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ProductModel, Product } from 'src/app/products/models/product.model';
-import { Router, ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
-import { switchMap, pluck } from 'rxjs/operators';
-import { Location } from '@angular/common';
+import { pluck } from 'rxjs/operators';
 
 @Component({
   selector: 'app-manage-product',
@@ -33,7 +32,6 @@ export class ManageProductComponent implements OnInit {
   }
 
   onSaveProduct(): void {
-    // this.productService.editProducts(this.product).subscribe(() => this.onGoBack());
     const product = { ...this.product } as Product;
     this.store.dispatch(ProductsActions.updateProduct({ product }));
   }
@@ -41,7 +39,6 @@ export class ManageProductComponent implements OnInit {
   onAddProduct(): void {
     const product = { ...this.product } as Product;
     this.store.dispatch(ProductsActions.createProduct({ product }));
-    // this.productService.addProducts(this.product).subscribe(() => this.onGoBack());
   }
 
   onGoBack(): void {

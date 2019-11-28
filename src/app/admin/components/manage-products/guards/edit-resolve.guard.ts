@@ -6,13 +6,18 @@ import { Observable, of } from 'rxjs';
 import { ProductModel } from 'src/app/products/models/product.model';
 import { map, catchError, take } from 'rxjs/operators';
 import { ProductService } from 'src/app/products/services/product.service';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/core/@ngrx';
 
 @Injectable({
   providedIn: 'root'
 })
 export class EditResolveGuard implements Resolve<ProductModel> {
 
-  constructor(public productService: ProductService) {}
+  constructor(
+    private store: Store<AppState>,
+    public productService: ProductService
+  ) {}
 
   resolve(route: ActivatedRouteSnapshot): Observable<ProductModel | null> {
     if (!route.paramMap.has('id')) {
@@ -29,7 +34,6 @@ export class EditResolveGuard implements Resolve<ProductModel> {
           this.store.dispatch(RouterActions.go({
             path: ['/home']
           }));
-      
           return null;
         }
       }),
@@ -38,7 +42,6 @@ export class EditResolveGuard implements Resolve<ProductModel> {
         this.store.dispatch(RouterActions.go({
           path: ['/home']
         }));
-    
         return of(null);
       })
     );

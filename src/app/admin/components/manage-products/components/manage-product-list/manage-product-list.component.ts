@@ -1,11 +1,10 @@
 // @NgRx
 import { Store, select } from '@ngrx/store';
-import { AppState, ProductsState } from './../../../../../core/@ngrx';
+import { AppState,  selectProductsData, selectProductsError } from './../../../../../core/@ngrx';
 import * as ProductActions from './../../../../../core/@ngrx/products/products.actions';
 import * as RouterActions from './../../../../../core/@ngrx/router/router.actions';
 
 import { Component, OnInit } from '@angular/core';
-import { ProductService } from 'src/app/products/services/product.service';
 import { ProductModel, Product } from 'src/app/products/models/product.model';
 import { Observable } from 'rxjs';
 import { Router, ActivatedRoute } from '@angular/router';
@@ -17,49 +16,36 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 
 export class ManageProductListComponent implements OnInit {
-  products: Observable<ProductModel[]>;
+  products$: Observable<ReadonlyArray<Product>>;
+  productsError$: Observable<Error | string>;
 
   constructor(
     private store: Store<AppState>,
-    public productService: ProductService,
-    private router: Router,
-    public activatedRoute: ActivatedRoute) { }
+    public activatedRoute: ActivatedRoute,
+    public router: Router
+    ) { }
 
   ngOnInit() {
-    this.products = this.productService.getProducts();
+    this.products$ = this.store.pipe(select(selectProductsData));
+    this.productsError$ = this.store.pipe(select(selectProductsError));
   }
 
   onEditProduct(product: ProductModel): void {
-    const link = ['./edit', product.id];
-    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    const link = [this.router.url + '/edit', product.id];
     this.store.dispatch(RouterActions.go({
-      path: link,
-      queryParams: {relativeTo: this.activatedRoute}
+      path: link
     }));
-
   }
 
   onAddProduct(): void {
-    const link = ['./add'];
-    //this.router.navigate(link, {relativeTo: this.activatedRoute});
+    const link = [this.router.url + '/add'];
     this.store.dispatch(RouterActions.go({
-      path: link,
-      queryParams: {relativeTo: this.activatedRoute}
+      path: link
     }));
   }
 
   onDeleteProduct(product: ProductModel): void {
-    // Option for Observable method
-    // this.productService.deleteProduct(product.id).subscribe(
-    //   () => this.products = this.productService.getProducts()
-    // );
-
     const productToDelete: Product = { ...product };
     this.store.dispatch(ProductActions.deleteProduct({ product: productToDelete }));
-
-    // this.productService
-    //   .deleteProduct(product.id)
-    //   .then(() => (this.products = this.productService.getProducts()))
-    //   .catch(err => console.log(err));
   }
 }
