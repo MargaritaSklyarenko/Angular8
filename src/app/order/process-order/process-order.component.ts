@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { CustomValidators } from './../../shared/validators'
+
 import {
   FormControl,
   FormBuilder,
@@ -14,6 +16,15 @@ import {
 })
 export class ProcessOrderComponent implements OnInit {
   orderForm: FormGroup;
+  rMin = 3;
+  rMax = 20;
+
+  placeholder = {
+    firstName: 'First Name (required)',
+    lastName: 'Last Name',
+    phone: 'Phone',
+    email: 'Email (required)',
+  };
 
   constructor(private formBuiler: FormBuilder) {}
 
@@ -26,9 +37,8 @@ export class ProcessOrderComponent implements OnInit {
       firstName: new FormControl('', {
         validators: [
           Validators.required,
-          Validators.minLength(3)
-        ],
-        updateOn: 'blur'
+          CustomValidators.checkLength(this.rMin, this.rMax)
+        ]
       }),
       lastName: '',
       email: [
@@ -43,8 +53,6 @@ export class ProcessOrderComponent implements OnInit {
       pickup: false,
       address: ''
     });
-
-    console.log(this.orderForm);
   }
 
   get phones(): FormArray {
@@ -66,6 +74,5 @@ export class ProcessOrderComponent implements OnInit {
   onSave() {
     console.log(this.orderForm);
     console.log(`Saved: ${JSON.stringify(this.orderForm.value)}`);
-    console.log(`Saved: ${JSON.stringify(this.orderForm.getRawValue())}`);
   }
 }
