@@ -1,4 +1,10 @@
-1) Json server was already inegrates. HttpClient too.
-2) DeleteProduct of ProductService by Promise scheme
-3) Added timing TimingInterceptor for url including product
-4) Implemented AppSettings
+1. Реализуйте компонент ProcessOrderComponent - реактивная форма, 
+   в которую пользователь должен внести данные для завершения формирования заказа:
+   - Имя пользователя (обязательное поле)
+
+   - Email (обязательное поле)
+
+2. Добавьте валидацию необходимых полей
+    - реализуйте валидатор для имени пользователя и директиву валидации для email
+
+4. Формируйте сообщения валидации внутри класса компонента или создайте дополнительный сервис.

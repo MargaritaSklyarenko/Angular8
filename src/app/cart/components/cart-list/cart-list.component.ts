@@ -40,12 +40,11 @@ export class CartListComponent implements OnInit, OnDestroy {
   }
 
   onBuyCartItems(): void {
-    this.localStorageService.addItem('orders', this.carts);
-    this.clearCart();
+    /*this.localStorageService.addItem('orders', this.carts);
+    this.clearCart();*/
     this.store.dispatch(RouterActions.go({
-      path: ['/orders']
+      path: ['/order']
     }));
-
   }
 
   clearCart(): void {
