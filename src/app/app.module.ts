@@ -33,3 +33,6 @@ import { RootStoreModule } from './core/@ngrx/root-store.module';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+// @ngrx/router-store - отсутствует в зависимостях. Без него приложение не запустилось
+// Больше замечаний нет.
