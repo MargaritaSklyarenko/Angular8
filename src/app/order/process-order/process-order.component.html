@@ -1,0 +1,114 @@
+<div>
+    <form class="form-horizontal" (ngSubmit)="onSave()" [formGroup]="orderForm">
+        <fieldset>
+            <div class="form-group">
+                <label class="control-label" for="firstNameId">First Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" formControlName="firstName" id="firstNameId" type="text"
+                        placeholder="{{placeholder.firstName}}" />
+                </div>
+                <span class="help-block" *ngIf="
+                    (orderForm.get('firstName').touched ||
+                    orderForm.get('firstName').dirty) &&
+                    orderForm.get('firstName').errors">
+                    <span *ngIf="orderForm.get('firstName').hasError('required')">
+                        Please enter your first name.
+                    </span>
+                    <span *ngIf="orderForm.get('firstName').errors.wrongLength">
+                        The first name must be longer than {{rMin}} characters and shorter then {{rMax}}.
+                    </span>
+                </span>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="lastNameId">Last Name</label>
+                <div class="col-md-8">
+                    <input class="form-control" formControlName="lastName" id="lastNameId" type="text"
+                        placeholder="{{placeholder.lastName}}" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label class="control-label" for="emailId">Email</label>
+
+                <div class="col-md-8">
+                    <input class="form-control" formControlName="email" id="emailId" type="email"
+                        placeholder="{{placeholder.email}}" appEmailValidator />
+                </div>
+
+                <span class="help-block"
+                    *ngIf="(orderForm.get('email').touched || orderForm.get('email').dirty) && orderForm.get('email').errors">
+                    <span *ngIf="orderForm.get('email').hasError('required')">
+                        Please enter your email address. It is required
+                    </span>
+                    <span *ngIf="orderForm.get('email').hasError('pattern')">
+                        Please enter a valid email address.
+                    </span>
+                    <span *ngIf="orderForm.get('email').hasError('email')">
+                        Please enter a valid email address.
+                    </span>
+                    <span *ngIf="orderForm.get('email').hasError('asyncEmailExist')">
+                        This email already exists. Please enter other email address.
+                    </span>
+                </span> 
+
+            </div>
+
+            <div formArrayName="phones">
+                <div *ngFor="let phone of phones.controls; let i = index" [formGroupName]="i">
+                    <div class="form-group">
+                        <label class="control-label" attr.for="{{'phoneId' + i}}">Phone Number {{i + 1}}</label>
+                        <div class="row col-md-8">
+                            <div class="col-11">
+                                <input class="form-control" formControlName="phoneNumber" id="{{'phoneId' + i}}"
+                                    type="tel" placeholder="{{placeholder.phone}}" />
+                            </div>
+                            <div class="col-1">
+                                <button type="button" class="close" aria-label="Close" (click)="onRemovePhoneNumber(i)">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-4 col-md-offset-2">
+                    <button class="btn btn-primary" type="button" (click)="onAddPhoneNumber()">
+                        Add Phone Number
+                    </button>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="checkbox">
+                    <label>
+                        <input id="pickupId" type="checkbox" formControlName="pickup" />
+                        Pickup
+                    </label>
+                </div>
+            </div>
+
+            <div *ngIf="orderForm.get('pickup').value">
+                <div class="form-group">
+                    <label class="control-label" for="address">Address</label>
+                    <div class="col-md-8">
+                        <textarea class="form-control" id="address" name="story" rows="5">
+                        </textarea>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="">
+                    <span>
+                        <button class="btn btn-primary" type="submit" [disabled]="!orderForm.valid">
+                            Save
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </fieldset>
+    </form>
+</div>

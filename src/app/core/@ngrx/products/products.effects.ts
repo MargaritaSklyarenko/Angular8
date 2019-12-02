@@ -27,10 +27,7 @@ export class ProductsEffects implements OnInitEffects, OnRunEffects {
                 this.productService
                 .getProducts()
                 .pipe(
-                    map(products => {
-                      console.log('Products! ', products);
-                      return ProductsActions.getProductsSuccess({ products });
-                    }),
+                    map(products => ProductsActions.getProductsSuccess({ products })),
                     catchError(error => of(ProductsActions.getProductsError({ error })))
                 )
             )
