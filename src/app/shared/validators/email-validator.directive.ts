@@ -9,7 +9,7 @@ import { debounceTime, distinctUntilChanged, first} from 'rxjs/operators';
   providers: [
     {
       provide: NG_ASYNC_VALIDATORS,
-      useExisting: EmailValidatorDirective, 
+      useExisting: EmailValidatorDirective,
       multi: true
     }
   ]
@@ -27,7 +27,6 @@ export class EmailValidatorDirective implements Validator {
   private validateEmailObservable(email: string) {
     return new Observable(observer => {
       if (email === 'exists@example.com') {
-        console.log("exists!!");
         observer.next({asyncEmailExist: true});
       } else {
         observer.next(null);

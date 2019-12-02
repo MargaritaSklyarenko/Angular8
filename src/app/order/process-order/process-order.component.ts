@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { CustomValidators } from './../../shared/validators'
+import { CustomValidators } from './../../shared/validators';
 
 import {
   FormControl,
