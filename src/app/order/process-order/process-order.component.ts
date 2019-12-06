@@ -32,6 +32,7 @@ export class ProcessOrderComponent implements OnInit {
     this.buildForm();
   }
 
+  // приватные методы размещаем под конец класса и желательно не вперемешку с публичными
   private buildForm() {
     this.orderForm = this.formBuiler.group({
       firstName: new FormControl('', {
