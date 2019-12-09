@@ -9,7 +9,6 @@ import { ValidatorsModule } from '../shared/validators/validators.module';
   declarations: [ProcessOrderComponent],
   imports: [
     CommonModule,
-    FormsModule, // Если форма реактивная, то этот модуль не нужен
     ReactiveFormsModule,
     ValidatorsModule
   ]

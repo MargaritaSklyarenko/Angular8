@@ -32,7 +32,27 @@ export class ProcessOrderComponent implements OnInit {
     this.buildForm();
   }
 
-  // приватные методы размещаем под конец класса и желательно не вперемешку с публичными
+  get phones(): FormArray {
+    return this.orderForm.get('phones') as FormArray;
+  }
+
+  onAddPhoneNumber(): void {
+    this.phones.push(this.buildPhoneNumbers());
+  }
+
+  onRemovePhoneNumber(index: number): void {
+    this.phones.removeAt(index);
+  }
+
+  onSave() {
+    console.log(this.orderForm);
+    console.log(`Saved: ${JSON.stringify(this.orderForm.value)}`);
+  }
+
+  private buildPhoneNumbers(): FormGroup {
+    return this.formBuiler.group({phoneNumber: ''});
+  }
+
   private buildForm() {
     this.orderForm = this.formBuiler.group({
       firstName: new FormControl('', {
@@ -54,26 +74,5 @@ export class ProcessOrderComponent implements OnInit {
       pickup: false,
       address: ''
     });
-  }
-
-  get phones(): FormArray {
-    return this.orderForm.get('phones') as FormArray;
-  }
-
-  onAddPhoneNumber(): void {
-    this.phones.push(this.buildPhoneNumbers());
-  }
-
-  private buildPhoneNumbers(): FormGroup {
-    return this.formBuiler.group({phoneNumber: ''});
-  }
-
-  onRemovePhoneNumber(index: number): void {
-    this.phones.removeAt(index);
-  }
-
-  onSave() {
-    console.log(this.orderForm);
-    console.log(`Saved: ${JSON.stringify(this.orderForm.value)}`);
   }
 }
