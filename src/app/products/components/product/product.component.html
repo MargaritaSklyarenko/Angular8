@@ -3,13 +3,13 @@
     <p>{{product.productCategory | uppercase}}</p>
     <p>{{product.description}}</p>
     <p>Price {{product.price | currency}}</p>
-    <button 
+    <button class = "add"
         (click)="onAddToCartProduct($event)"
         [disabled]="!product.isAvailable"
         appBoldBorder='2px'>
         Add to cart
     </button>
-    <button
+    <button class = "show"
         (click)="onShowDetails()">
         Details
     </button>

@@ -4,8 +4,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CartService } from '../../services';
 import { CartModel } from '../../models';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { Store } from '@ngrx/store';
-import { AppState } from 'src/app/core/@ngrx';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-cart-list',
@@ -18,7 +17,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   fields = ['name', 'count', 'price'];
 
   constructor(
-    private store: Store<AppState>,
+    private router: Router,
     public cartService: CartService,
     public localStorageService: LocalStorageService
   ) { }
@@ -42,9 +41,7 @@ export class CartListComponent implements OnInit, OnDestroy {
   onBuyCartItems(): void {
     this.localStorageService.addItem('orders', this.carts);
     this.clearCart();
-    this.store.dispatch(RouterActions.go({
-      path: ['/order']
-    }));
+    this.router.navigate(['/order']);
   }
 
   clearCart(): void {
