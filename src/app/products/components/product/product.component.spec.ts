@@ -6,7 +6,7 @@ import { ProductModel, Category } from '../../models/product.model';
 
 describe('ProductComponent', () => {
     let component: ProductComponent;
-    let fixture: ComponentFixture<ProductComponent>; 
+    let fixture: ComponentFixture<ProductComponent>;
     let productNameEl: DebugElement;
     let showProductEl: DebugElement;
     let addProductEl: DebugElement;
@@ -14,7 +14,7 @@ describe('ProductComponent', () => {
         productName: 'Testing name',
         productCategory: Category.Computer,
         id: 0,
-        price:0,
+        price: 0,
         description: '',
         imageUrl: ''
     };
@@ -43,12 +43,12 @@ describe('ProductComponent', () => {
 
     it('should raise selected event showProductDetails when clicked', () => {
         let selectedProduct: ProductModel;
-        component.product = expectedProduct;  
+        component.product = expectedProduct;
         fixture.detectChanges();
 
         showProductEl = fixture.debugElement.query(By.css('.show'));
         component.showProductDetails.subscribe((product: ProductModel) => (selectedProduct = product));
-    
+
         showProductEl.triggerEventHandler('click', null);
         expect(selectedProduct).toBe(expectedProduct);
     });
@@ -60,7 +60,7 @@ describe('ProductComponent', () => {
 
         addProductEl = fixture.debugElement.query(By.css('.add'));
         component.addToCartProduct.subscribe((product: ProductModel) => (selectedProduct = product));
-    
+
         addProductEl.triggerEventHandler('click', null);
         expect(selectedProduct).toBe(expectedProduct);
     });
