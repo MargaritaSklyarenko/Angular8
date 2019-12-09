@@ -3,3 +3,6 @@
 3. Создайте изолированный юнит тест для тестирования одного из ваших пайпов. Sum pipe
 4. Создайте поверхностный юнит тест для тестирования вашего AppComponent.
 5. Создайте отчет о покрытии кода тестами.
+
+can check routing and service for cart-list component
+check input - output productComponent

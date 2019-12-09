@@ -14,15 +14,15 @@ export class ActivatedRouteStub {
   // Возвращает одно и то же значение каждому подписчику paramMap,
   // пока не будет присвоено новое значение.
   private subject = new BehaviorSubject(this.testParams);
-  private _testParams: {};
+  private testParameters: {};
 
   // Создаем Observable
   paramMap = this.subject.asObservable();
 
   // гетер и сетер для testParams
-  get testParams() { return this._testParams; }
+  get testParams() { return this.testParameters; }
   set testParams(paramMap: {}) {
-    this._testParams = paramMap;
+    this.testParameters = paramMap;
     this.subject.next(paramMap);
   }
 
